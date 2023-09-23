@@ -37,34 +37,31 @@ const TrendingTable = () => {
   }, [collectionData]);
 
   return (
-    <div className="w-full mb-16 border-[0.5px] border-white rounded-[20px] py-10 md:px-[72px] px-4">
+    <div className="w-full mb-16 border-[0.5px] border-[#24C3BC] bg-[#24C3BC]/10 rounded-[10px] py-[30px] px-[20px]">
       <div className="lg:flex items-center w-full  ">
         <div className="flex flex-col flex-1 items-center">
-          <p className="flex-1 text-3xl text-white font-extrabold uppercase pb-10 text-center">
+          <p className="flex-1 text-[32px] text-[#24C3BC] font-bold mb-[30px] text-center">
             Trending
           </p>
           <div className="flex-1 w-full">
             <div className="flex-1 relative  h-full max-h-[350px] overflow-x-auto">
-              <table className="w-full h-full text-sm text-left  border-gray-500  border-collapse">
-                <thead className="uppercase text-xs border-b  sticky top-0">
+              <table className="w-full h-full text-sm text-left border-[#24C3BC]  border-collapse">
+                <thead className="text-xl font-bold border-b border-[#24C3BC] sticky top-0">
                   <tr>
-                    <th scope="col" className="font-bold py-3 text-left">
+                    <th scope="col" className=" py-3 text-center min-w-[50px] ">
                       Rank
                     </th>
                     <th
                       scope="col"
-                      className="font-bold px-6 py-3 min-w-[200px] text-center"
+                      className=" px-6 py-3 min-w-[200px] text-left"
                     >
                       Collection
                     </th>
-                    <th
-                      scope="col"
-                      className="font-bold min-w-[100px] uppercase text-left"
-                    >
+                    <th scope="col" className=" min-w-[150px] text-left ">
                       Floor Price
                     </th>
-                    <th scope="col" className="font-bold text-right uppercase">
-                      Volume
+                    <th scope="col" className=" text-right min-w-[100px] ">
+                      Volume 24h
                     </th>
                   </tr>
                 </thead>
@@ -99,34 +96,31 @@ const TrendingTable = () => {
             </div> */}
           </div>
         </div>
-        <div className="h-[290px] border-[0.5px] lg:block hidden border-[#808080] mx-10 mt-14" />
-        <div className="w-full border-[0.5px] lg:hidden block border-[#808080] my-4" />
+        <div className="h-[312px] border-[0.5px] lg:block hidden border-[#24C3BC] mx-10 mt-[98px]" />
+        <div className="w-full border-[0.5px] lg:hidden block border-[#24C3BC] my-4" />
         <div className="flex flex-col flex-1 items-center">
-          <p className="flex-1 text-3xl text-white font-extrabold uppercase pb-10 text-center">
+          <p className="flex-1 text-[32px] text-[#24C3BC] font-bold mb-[30px] text-center">
             Top Volume
           </p>
           <div className="flex-1 w-full">
             <div className="flex-1 relative  h-full max-h-[350px] overflow-x-auto">
               <table className="w-full h-full text-sm text-left  border-gray-500   border-collapse">
-                <thead className="uppercase text-xs border-b sticky top-0">
+                <thead className="text-xl font-bold border-b border-[#24C3BC] sticky top-0">
                   <tr>
-                    <th scope="col" className="font-bold py-3 text-left">
+                    <th scope="col" className=" py-3 text-center min-w-[50px] ">
                       Rank
                     </th>
                     <th
                       scope="col"
-                      className="font-bold px-6 py-3 min-w-[200px] text-center"
+                      className=" px-6 py-3 min-w-[200px] text-left"
                     >
                       Collection
                     </th>
-                    <th
-                      scope="col"
-                      className="font-bold min-w-[100px] uppercase text-left"
-                    >
+                    <th scope="col" className=" min-w-[150px] text-left ">
                       Floor Price
                     </th>
-                    <th scope="col" className="font-bold text-right uppercase">
-                      Volume
+                    <th scope="col" className=" text-right min-w-[100px] ">
+                      Volume 24h
                     </th>
                   </tr>
                 </thead>

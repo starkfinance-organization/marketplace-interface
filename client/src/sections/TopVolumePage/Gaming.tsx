@@ -24,20 +24,22 @@ const Gaming = () => {
   }, [collectionData]);
 
   return (
-    <div className="w-full pb-14 overflow-hidden">
-      <div className="flex items-center justify-between lg:px-[90px] px-4">
-        <p className="font-bold text-2xl text-white uppercase">Gaming</p>
+    <div className="w-full pb-[60px] overflow-hidden">
+      <div className="flex items-center justify-between pb-[50px]">
+        <p className="font-bold text-[32px] text-[#24C3BC]">
+          Trending in Gaming
+        </p>
         <button
           className="flex items-center"
           onClick={() => navigate("/collection")}
         >
-          <p className="text-sm font-medium uppercase">View Category</p>
+          <p className="text-base font-normal">View Category</p>
           <BiChevronRight className="h-8 w-8 text-[16px] text-white" />
         </button>
       </div>
-      <div className="flex no-scrollbar whitespace-nowrap overflow-x-auto lg:grid-flow-row lg:grid-rows-1 lg:grid-cols-5 gap-8 py-3 lg:mx-[90px] px-2">
+      <div className="flex lg:grid no-scrollbar whitespace-nowrap overflow-x-auto lg:grid-flow-row lg:grid-rows-1 lg:grid-cols-5 gap-[30px]  ">
         {collections?.map((item: any) => (
-          <div className="flex-1 h-[345px] w-[330px] aspect-square">
+          <div className="flex-1 h-[300px] w-[300px] aspect-square">
             <CollectionCard collection={item} />
           </div>
         ))}

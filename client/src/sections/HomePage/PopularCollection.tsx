@@ -24,7 +24,7 @@ const PopularCollection = () => {
     <div className="pb-32 relative lg:px-[120px] md:px-[60px] px-5">
       {/* <img src={BG} alt="" className="absolute inset-0 h-full w-full -z-10" /> */}
       <img src={PopularText} alt="" className="mx-auto" />
-      <div className="grid max-w-website sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 py-[70px] grid-rows-1 grid-cols-1 gap-5 px-2">
+      <div className="grid max-w-website sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 py-[70px] grid-rows-1 grid-cols-1 gap-5 px-2">
         {collectionShow.map((item) => {
           return <CollectionCard collection={item} />;
         })}

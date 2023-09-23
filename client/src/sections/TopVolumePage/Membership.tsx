@@ -6,10 +6,9 @@ import { BiChevronRight } from "react-icons/bi";
 import CollectionCard from "@/components/CollectionCard/CollectionCard";
 import { route } from "@/routes/config";
 
-const PhotoMusic = () => {
+const Memberships = () => {
   const { data: collectionData } = useGetCollections();
   const navigate = useNavigate();
-
   const [collections, setCollections] = useState<any[]>([]);
   const handleClick = () => {
     navigate(route.collection);
@@ -27,7 +26,7 @@ const PhotoMusic = () => {
     <div className="w-full pb-[60px] overflow-hidden">
       <div className="flex items-center justify-between pb-[50px]">
         <p className="font-bold text-[32px] text-[#24C3BC]">
-          Trending in PFPs, Photography, Music
+          Trending in Memberships
         </p>
         <button
           className="flex items-center"
@@ -48,4 +47,4 @@ const PhotoMusic = () => {
   );
 };
 
-export default PhotoMusic;
+export default Memberships;

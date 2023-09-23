@@ -9,7 +9,7 @@ const NFTCard: React.FC<{ nftData: any }> = ({ nftData }) => {
 
   return (
     <div
-      className=" rounded-lg w-full transition-all border-[4px] border-[#24C3BC] aspect-3/4  relative md:hover:scale-105 grid place-items-center cursor-pointer"
+      className=" rounded-lg w-full transition-all border-[4px] border-[#24C3BC] aspect-3/4 bg-[#24C3BC]/10 relative md:hover:scale-105 grid place-items-center cursor-pointer"
       onClick={() => {
         navigation(`collection/${nftData.contract_address}`);
       }}
