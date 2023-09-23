@@ -13,7 +13,7 @@ export const useGetFilterListingOwner = (
   // options?: UseQueryOptions<NFTResponse>
 ) => {
   return useInfiniteQuery<ListingResponse<ItemResponse[]>>({
-    queryKey: QUERY_KEY.ACTIVITY(signer || ""),
+    queryKey: QUERY_KEY.ACTIVITY(signer || "", "", 0, ""),
     queryFn: async ({ pageParam = 1 }) => {
       let paramsValue: any = filterEmptyQueryParams({
         page: pageParam,

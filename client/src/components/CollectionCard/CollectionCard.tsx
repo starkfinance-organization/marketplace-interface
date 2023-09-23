@@ -14,7 +14,7 @@ const CollectionCard: React.FC<{ collection: any }> = ({ collection }) => {
 
   return (
     <div
-      className="aspect-square relative overflow-hidden flex flex-col justify-between border-[2px] border-[#24C3BC] rounded-md transition collection-bg-card  hover:cursor-pointer"
+      className="aspect-square relative w-full overflow-hidden flex flex-col justify-between border-[2px] border-[#24C3BC] rounded-md transition collection-bg-card h-full  hover:cursor-pointer"
       onClick={() => {
         navigation(`/collection/${collection.contract_address}`);
       }}
@@ -71,14 +71,14 @@ const CollectionCard: React.FC<{ collection: any }> = ({ collection }) => {
               <div className="flex justify-between">
                 <p className="text-white text-sm">Volume</p>
                 <div className="flex">
-                  <p className="text-white text-sm">
+                  <p className="text-white text-xs">
                     {getShortPrice3(collection.volume)}
                   </p>
                   <img src={ETHCircle} alt="" className="ml-2" />
                 </div>
               </div>
               <div className="flex justify-between">
-                <p className="text-white text-sm">Floor Price: </p>
+                <p className="text-white text-xs">Floor Price: </p>
                 <div className="flex">
                   <p className="text-white text-sm">
                     {" "}

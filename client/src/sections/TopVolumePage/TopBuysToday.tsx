@@ -6,38 +6,32 @@ import { BiChevronRight } from "react-icons/bi";
 import CollectionCard from "@/components/CollectionCard/CollectionCard";
 import { route } from "@/routes/config";
 
-const TopBuysToday = () => {
-  const { data: collectionData } = useGetCollections();
+const TopBuysToday: React.FC<{ collections: any; title: String }> = ({
+  collections,
+  title,
+}) => {
   const navigate = useNavigate();
-
-  const [collections, setCollections] = useState<any[]>([]);
   const handleClick = () => {
     navigate(route.collection);
   };
-  useEffect(() => {
-    if (collectionData) {
-      let tempArr = collectionData.data.filter(
-        (item: any, index: number) => index < 5
-      );
-      setCollections(tempArr);
-    }
-  }, [collectionData]);
 
   return (
     <div className="w-full pb-[60px] overflow-hidden">
       <div className="flex items-center justify-between pb-[50px]">
-        <p className="font-bold text-[32px] text-[#24C3BC]">All Collections </p>
+        <p className="font-bold md:text-[32px] text-[24px] text-[#24C3BC]">
+          {title}
+        </p>
         <button
           className="flex items-center"
           onClick={() => navigate("/collection")}
         >
-          <p className="text-base font-normal">View Category</p>
+          <p className="md:text-base text-xs font-normal">View Category</p>
           <BiChevronRight className="h-8 w-8 text-[16px] text-white" />
         </button>
       </div>
-      <div className="flex lg:grid no-scrollbar whitespace-nowrap overflow-x-auto lg:grid-flow-row lg:grid-rows-1 lg:grid-cols-5 gap-[30px]  ">
+      <div className="flex no-scrollbar overflow-x-auto md:grid-cols-4 lg:grid-cols-5 gap-[20px]  ">
         {collections?.map((item: any) => (
-          <div className="flex-1 h-[300px] w-[300px] aspect-square">
+          <div className="max-w-[300px] w-full flex-shrink-0 aspect-square">
             <CollectionCard collection={item} />
           </div>
         ))}
