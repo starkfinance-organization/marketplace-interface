@@ -1,0 +1,4 @@
+.bg-header-1{
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+}

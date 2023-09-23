@@ -1,0 +1,42 @@
+@media (min-width: 768px) {
+    .max-w-website {
+        width: 100%;
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+.text-banner {
+    background: linear-gradient(121deg, #E025CE, #4AED52);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.shadow-button-wallet:hover {
+    box-shadow: #24C3BC 0px 2px 36px 0px, #24C3BC 0px 0px 0px 1px;
+}
+
+.trending-background {
+    background: linear-gradient(139deg, rgba(255, 255, 255, 0.13) 0%, rgba(143, 143, 143, 0.06) 100%);
+    backdrop-filter: blur(50px);
+    border: 2px solid;
+    border-left: none;
+    border-right: none;
+    border-image: linear-gradient(12deg, #E025CE, #4AED52, #BD24E6) 1;
+}
+
+.bg-blur {
+    background-color: rgba(1, 4, 26, 0.60);
+    backdrop-filter: blur(4px);
+}
+
+.bg-traits-card {
+    background: #24C3BC;
+}
+
+.bg-footer {
+    background: linear-gradient(139deg, rgba(255, 255, 255, 0.04) 0%, rgba(143, 143, 143, 0.02) 100%);
+}

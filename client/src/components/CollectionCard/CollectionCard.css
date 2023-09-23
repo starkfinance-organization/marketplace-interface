@@ -1,0 +1,12 @@
+.collection-bg-card{
+    position: relative;
+  border-radius: 6px;
+}
+
+
+.bg-info {
+    border-radius: 0px 0px 6px 6px;
+/* opacity: 0.699999988079071; */
+background: linear-gradient(90deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 100%);
+/* backdrop-filter: blur(5px); */
+}

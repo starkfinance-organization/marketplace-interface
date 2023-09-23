@@ -1,0 +1,21 @@
+.ant-drawer-header {
+    background-color: #0E0A1F;
+
+}
+
+.ant-drawer-title{
+    color:white !important
+
+}
+
+.anticon-close{
+    color:white !important
+}
+
+.ant-drawer-body {
+    background-color: #0E0A1F;
+}
+
+.ant-drawer-content-wrapper{
+    width: 250px !important;
+}

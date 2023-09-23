@@ -1,0 +1,66 @@
+@import './styles/common.css';
+@import './styles/andt-custom.css';
+@import './styles/drawer.css';
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Paytone+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #fff;
+  /* background-color: #0E0A1F; */
+  background-image: url("@/assets/png/bg_image.png");
+  background-size: cover;
+  background-position: right;
+  /* padding: 20px; */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Track */
+::-webkit-scrollbar {
+  width: 0px;
+  /* Adjust width as needed */
+}
+
+/* Track background */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Adjust background color as needed */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  /* Adjust handle color as needed */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Adjust handle color on hover as needed */
+}
+
+/* Remove default arrow appearance */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: none !important
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

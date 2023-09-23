@@ -1,0 +1,21 @@
+.card-bg {
+  position: relative;
+}
+
+.card-bg::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+    border-radius: 8px;
+    background: linear-gradient(121deg, #E025CE,#4AED52, #BD24E6);
+    z-index: -1;
+}
+
+.bg-blur{
+    border-radius: 0px 0px 6px 6px;
+    background: linear-gradient(139deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.06) 100%);
+    backdrop-filter: blur(10px);
+}

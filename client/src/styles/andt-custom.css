@@ -1,0 +1,17 @@
+.ant-btn-primary {
+    color: black !important;
+}
+
+.ant-picker {
+    background-color: rgb(30 66 159 / 0.5);
+    border: 1px solid rgb(107 114 128 / 1);
+
+}
+
+.ant-picker-input input {
+    color: white !important;
+}
+
+.ant-picker-suffix {
+    color: white !important;
+}
