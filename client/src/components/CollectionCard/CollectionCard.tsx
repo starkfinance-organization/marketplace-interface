@@ -69,20 +69,20 @@ const CollectionCard: React.FC<{ collection: any }> = ({ collection }) => {
 
             <div className="w-full">
               <div className="flex justify-between">
-                <p className="text-white text-sm">Volume</p>
-                <div className="flex">
-                  <p className="text-white text-xs">
-                    {getShortPrice3(collection.volume)}
-                  </p>
-                  <img src={ETHCircle} alt="" className="ml-2" />
-                </div>
-              </div>
-              <div className="flex justify-between">
                 <p className="text-white text-xs">Floor Price: </p>
                 <div className="flex">
                   <p className="text-white text-sm">
                     {" "}
                     {getShortPrice(collection.floor_price)}
+                  </p>
+                  <img src={ETHCircle} alt="" className="ml-2" />
+                </div>
+              </div>
+              <div className="flex justify-between">
+                <p className="text-white text-xs">Total Volume</p>
+                <div className="flex">
+                  <p className="text-white text-xs">
+                    {getShortPrice3(collection.volume)}
                   </p>
                   <img src={ETHCircle} alt="" className="ml-2" />
                 </div>

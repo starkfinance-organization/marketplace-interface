@@ -8,7 +8,7 @@ const CollectionCard = ({ data }: { data: any }) => {
   return (
     <button
       onClick={() => navigation(`/collection/${data.contract_address}`)}
-      className="overflow-hidden w-full duration-700 rounded-lg bg-gray-900 "
+      className="overflow-hidden w-full duration-700 rounded-lg "
     >
       <div className="overflow-hidden">
         <img
@@ -30,7 +30,7 @@ const CollectionCard = ({ data }: { data: any }) => {
           </div>
           <div className="text-lg text-left">
             <p className="text-slate-500">Price</p>
-            <p className="font-semibold  text-lg">{`${
+            <p className="font-semibold text-lg">{`${
               data.floor_price ?? "-"
             } ETH`}</p>
           </div>

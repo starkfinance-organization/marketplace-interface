@@ -230,7 +230,7 @@ const ActivityPage = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="mt-[20px]">
+                <tbody className="mt-[20px] text-base">
                   {listNFT.map((item: any, index: any) => (
                     <RowNFTTabCollection
                       data={item}

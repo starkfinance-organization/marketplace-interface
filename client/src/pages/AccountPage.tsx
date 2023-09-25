@@ -6,11 +6,12 @@ import { getShortAddress } from "@/utils/string";
 import { useAccount } from "@starknet-react/core";
 
 import { useState } from "react";
+import { useParams } from "react-router";
 // import OfferMadeTab from "@/sections/AccountPage/OfferMadeTab";
 // import OffersReceived from "@/sections/AccountPage/OffersReceivedTab";
 
 const AccountPage = () => {
-  const { address } = useAccount();
+  const { account_address } = useParams();
 
   const tabs = ["Collected", "Listings"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -36,7 +37,9 @@ const AccountPage = () => {
           <div className="">
             {/* <p className="text-[#24C3BC] font-bold text-5xl">Creator Name</p> */}
             <div className="flex flex-wrap gap-x-12 mt-2 items-center">
-              <p className="text-2xl">{getShortAddress(address || "")}</p>
+              <p className="text-2xl">
+                {getShortAddress(account_address || "")}
+              </p>
               {/* <p className="text-2xl font-normal">
                 Joined <span className="font-bold">November 2022</span>
               </p> */}

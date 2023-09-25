@@ -83,7 +83,7 @@ const ActivityCollection = () => {
         >
           <div
             onClick={() => setIsOpenEventRecentlyListed((prev) => !prev)}
-            className={`flex justify-between pb-3 select-none`}
+            className={`flex justify-between pb-3 select-none `}
           >
             <p>Status</p>
             <img

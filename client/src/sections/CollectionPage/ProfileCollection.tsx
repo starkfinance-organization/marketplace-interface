@@ -24,7 +24,7 @@ const ProfileCollection = ({ data }: { data?: any }) => {
       <div className="max-w-website md:px-[60px] px-[20px] lg:px-[120px] pt-80 ">
         <img
           src={data?.image || AvataCollection}
-          className="w-40 h-40 rounded-lg"
+          className="w-[150px] h-[150px] rounded-lg border-[4px] border-white"
           alt=""
         />
 

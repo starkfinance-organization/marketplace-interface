@@ -27,15 +27,13 @@ const MoreFromThisCollections = () => {
   return (
     <div className="w-full 2xl:px-[10vw] lg:px-20 px-5 pb-14 overflow-hidden ">
       <div className="flex items-center justify-center lg:px-[90px] px-4">
-        <p className="font-bold text-2xl text-white ">
-          More from this collection:
-        </p>
+        <p className=" text-xl text-white ">More from this collection</p>
       </div>
       <div className="flex scrollbar-styled whitespace-nowrap overflow-x-auto lg:grid-flow-row lg:grid-rows-1 lg:grid-cols-5 gap-8 pt-5 pb-10  ">
         {collections?.map((item: any) => (
           <div className=" rounded-md p-1 bg-gradient-to-br from-white/80  via-white/20 to-white">
             <div
-              className="w-full h-full  bg-[#151125] rounded"
+              className="w-full h-full  bg-[#151125] rounded cursor-pointer"
               onClick={() => {
                 navigate(`/assets/${item?.contract_address}/${item?.token_id}`);
               }}

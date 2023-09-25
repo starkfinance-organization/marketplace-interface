@@ -104,7 +104,7 @@ const StarksportMint = () => {
         <div className="flex-1 flex flex-col justify-between ">
           <div className="md:mt-0 my-[20px]">
             <p className="text-[32px] text-[#00FFFF] font-bold">
-              Starksport NFT Utilities{" "}
+              Starksport NFT Utilities
             </p>
             <p className="text-[20px] text-white font-bold">
               3000 Limited Edition
