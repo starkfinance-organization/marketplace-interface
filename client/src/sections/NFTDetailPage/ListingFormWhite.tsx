@@ -5,7 +5,7 @@ import {
   getShortPrice,
   isSameAddress,
 } from "@/utils/string";
-import moment from 'moment';
+import moment from "moment";
 
 // import usePostSellListing from "@/queries/sell_listing/usePostSellListing";
 // import { NFT } from "@/queries/types";
@@ -41,7 +41,7 @@ type ListingFormProps = {
   timeEndList: any;
 };
 
-const ListingForm: React.FC<ListingFormProps> = (props) => {
+const ListingFormWhite: React.FC<ListingFormProps> = (props) => {
   const { contract_address, token_id } = useParams();
   const { nftData, priceInEther, timeEndList } = props;
   const { account, address, status } = useAccount();
@@ -293,7 +293,7 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
   return (
     <div>
       {loading && (
-        <div className="rounded-md absolute inset-0 h-full w-full animate-pulse z-10 bg-blue-800/10"></div>
+        <div className="rounded-md absolute inset-0 h-full w-full animate-pulse z-50 bg-blue-800/10"></div>
       )}
 
       {isApproved ? (
@@ -312,8 +312,8 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
                 disabled={!activeAction}
                 onClick={handleListingSignature}
                 // className={`cursor-pointer h-12 w-full py-2 px-4 border  rounded-md grid place-items-center mt-3`}
-                className={`w-full cursor-pointer h-fit py-3 px-4 mt-12 shadow-button-wallet ${
-                  signing ? "bg-gray-400" : "bg-[#24C3BC]"
+                className={`w-full cursor-pointer h-fit py-3 px-4 shadow-button-wallet ${
+                  signing ? "bg-gray-400" : "bg-white"
                 } rounded-md grid place-items-center`}
               >
                 {signing ? (
@@ -321,10 +321,12 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
                     <div className="animate-spin">
                       <AiOutlineLoading3Quarters />
                     </div>
-                    <p className="text-[20px] font-bold ml-5">Signing</p>
+                    <p className="text-[20px] font-bold ml-5 text-[#24C3BC]">
+                      Signing
+                    </p>
                   </div>
                 ) : (
-                  <p className="text-[20px] uppercase font-bold">
+                  <p className="text-[20px] uppercase font-bold text-[#24C3BC]">
                     Complete listing
                   </p>
                 )}
@@ -367,4 +369,4 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
   );
 };
 
-export default ListingForm;
+export default ListingFormWhite;

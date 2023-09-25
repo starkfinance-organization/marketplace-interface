@@ -1,4 +1,6 @@
 export const QUERY_KEY = {
+  SCActivity: (address: string, id: string) => ["action-nft", address, id],
+
   SCAccountNFTs: (account_address: string) => ["AccountNFTs", account_address],
   SCNFT: (contract_address: string, token_id: string) => [
     "NFT",

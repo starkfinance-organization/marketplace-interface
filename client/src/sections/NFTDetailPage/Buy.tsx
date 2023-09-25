@@ -112,14 +112,12 @@ const Buy: React.FC<BuyProps> = (props) => {
   };
 
   return (
-    <button
+    <div
+      className="flex-1 cursor-pointer h-fit py-3 px-4 shadow-button-wallet bg-[#24C3BC] rounded-md grid place-items-center"
       onClick={handleBuyNow}
-      className={`cursor-pointer h-12 w-full py-2 px-4 border
-bg-[#24C3BC]
-rounded-md grid place-items-center mt-3`}
     >
-      <p className="text-[20px] font-bold">Buy Now</p>
-    </button>
+      <p className="text-[20px] uppercase font-bold">buy now </p>
+    </div>
   );
 };
 

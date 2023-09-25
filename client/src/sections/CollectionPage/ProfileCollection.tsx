@@ -13,7 +13,7 @@ const ProfileCollection = ({ data }: { data?: any }) => {
   const handleTab = (tab: string) => {
     setActiveTab(tab);
   };
-  
+
   return (
     <div className="pt-20 relative pb-20">
       <img

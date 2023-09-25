@@ -8,8 +8,6 @@ import { useAccount } from "@starknet-react/core";
 import { useGetSellListing } from "@/queries/useGetSellListing";
 import ContentDetail from "./ContentDetail";
 import MoreFromThisCollections from "./MoreFromThisCollections";
-// import ContentDetail from "./ContentDetail";
-// import MoreFromThisCollections from "./MoreFromThisCollections";
 
 const DescriptionNFT: React.FC<{ description: string; traits: any[] }> = ({
   description,
@@ -58,6 +56,10 @@ const NFTDetailBuyer = () => {
   );
 
   useEffect(() => {
+    console.log(nftListing);
+  }, [nftListing]);
+
+  useEffect(() => {
     if (nftResponse) setNftData(nftResponse);
   }, [nftResponse]);
 
@@ -73,6 +75,10 @@ const NFTDetailBuyer = () => {
     } else setOwner(false);
   }, [nftListing, nftResponse, address, status, account]);
 
+  useEffect(() => {
+    console.log(isListing);
+  }, [isListing]);
+
   return (
     <InforListingContext.Provider
       value={{
@@ -82,7 +88,7 @@ const NFTDetailBuyer = () => {
     >
       <ContentDetail />
       <MoreFromThisCollections />
-    </InforListingContext.Provider>
+    </InforListingContext.Provider >
   );
 };
 

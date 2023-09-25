@@ -5,8 +5,6 @@ import {
   getShortPrice,
   isSameAddress,
 } from "@/utils/string";
-import moment from 'moment';
-
 // import usePostSellListing from "@/queries/sell_listing/usePostSellListing";
 // import { NFT } from "@/queries/types";
 import { Contract, number, uint256 } from "starknet";
@@ -37,13 +35,11 @@ const transferManagerERC721 = addresses!.transferManagerERC721.address;
 
 type ListingFormProps = {
   nftData: any;
-  priceInEther: number;
-  timeEndList: any;
 };
 
 const ListingForm: React.FC<ListingFormProps> = (props) => {
   const { contract_address, token_id } = useParams();
-  const { nftData, priceInEther, timeEndList } = props;
+  const { nftData } = props;
   const { account, address, status } = useAccount();
   const postSellListing = usePostSellListing();
   const [isApproved, setIsApproved] = useState(false);
@@ -54,11 +50,10 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
   const [activeAction, setActiveAction] = useState(true);
   const [signing, setSigning] = useState(false);
 
-  // const [timeEndList, setTimeEndList] = useState(() => {
-  //   const next7thDay = dayjs().add(7, "day").format("YYYY-MM-DD HH:mm:ss");
-  //   return next7thDay;
-  // });
-
+  const [timeEndList, setTimeEndList] = useState(() => {
+    const next7thDay = dayjs().add(7, "day").format("YYYY-MM-DD HH:mm:ss");
+    return next7thDay;
+  });
   const [isApproving, setIsApproving] = useState(false);
 
   useEffect(() => {
@@ -74,18 +69,19 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
   }, [address, nftData, status, account]);
 
   // Handler to update the state when the date value changes
-  // const handleDateChange = (date: any) => {
-  //   if (date) {
-  //     setTimeEndList(date.format("YYYY-MM-DD HH:mm:ss"));
-  //   }
-  // };
-  // const [priceInEther, setPriceInEther] = useState<number>(0.01);
+  const handleDateChange = (date: any) => {
+    if (date) {
+      setTimeEndList(date.format("YYYY-MM-DD HH:mm:ss"));
+    }
+  };
+  const [priceInEther, setPriceInEther] = useState<number>(0.01);
   const { refetchListingData, listingData } = useInforListingContext();
 
   // If not, get latest nonce of owner
   const { mutateAsync } = useGetSellListingMutation();
 
   const findHighestNonce = (ownerListings: any) => {
+    console.log(ownerListings);
     if (ownerListings?.length) {
       const maxNonceObj = ownerListings.reduce((prev: any, current: any) => {
         return prev.nonce > current.nonce ? prev : current;
@@ -163,7 +159,7 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
         postSellListing
           .mutateAsync(data)
           .then(() => {
-            // setPriceInEther(0);
+            setPriceInEther(0);
             refetchListingData();
             setSigning(false);
             setActiveAction(false);
@@ -245,9 +241,9 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
     return (
       <button
         disabled={isApproving}
-        className={`cursor-pointer w-full h-fit py-3 px-4 mt-12 shadow-button-wallet ${
+        className={`cursor-pointer h-full py-2 px-4 border w-full  ${
           isApproving ? "bg-gray-500" : "bg-[#24C3BC]"
-        } rounded-md grid place-items-center`}
+        } rounded-md grid place-items-center mt-3`}
         onClick={handleApproveForAll}
       >
         <p className="text-[20px] font-bold">
@@ -290,81 +286,115 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
     }
   };
 
-  return (
-    <div>
-      {loading && (
-        <div className="rounded-md absolute inset-0 h-full w-full animate-pulse z-10 bg-blue-800/10"></div>
-      )}
+  // function addDaysToCurrentTime(dateString: any) {
+  //   const unixTimeInSeconds = Math.floor(new Date(dateString).getTime() / 1000);
+  //   return unixTimeInSeconds;
+  // }
 
-      {isApproved ? (
-        <div>
-          {!isListing ? (
-            <div className="w-full">
-              {/* <DatePicker
-                className="text-black w-full"
-                value={dayjs(timeEndList).local()} // Convert the state value to Day.js object before passing it to DatePicker
-                format="YYYY-MM-DD HH:mm:ss"
-                showTime
-                onChange={handleDateChange}
-              /> */}
-
-              <button
-                disabled={!activeAction}
-                onClick={handleListingSignature}
-                // className={`cursor-pointer h-12 w-full py-2 px-4 border  rounded-md grid place-items-center mt-3`}
-                className={`w-full cursor-pointer h-fit py-3 px-4 mt-12 shadow-button-wallet ${
-                  signing ? "bg-gray-400" : "bg-[#24C3BC]"
-                } rounded-md grid place-items-center`}
-              >
-                {signing ? (
-                  <div className="flex items-center justify-center">
-                    <div className="animate-spin">
-                      <AiOutlineLoading3Quarters />
-                    </div>
-                    <p className="text-[20px] font-bold ml-5">Signing</p>
-                  </div>
-                ) : (
-                  <p className="text-[20px] uppercase font-bold">
-                    Complete listing
-                  </p>
-                )}
-              </button>
-
-              {/* <div
-                className="cursor-pointer h-fit py-3 px-4 mt-12 shadow-button-wallet bg-[#24C3BC] rounded-md grid place-items-center"
-                onClick={handleCancelListing}
-              >
-                <p className="text-[20px] uppercase font-bold">
-                  Complete listing
-                </p>
-              </div> */}
-            </div>
-          ) : (
-            // <div>
-            //   <button
-            //     // disabled={!activeAction}
-            //     onClick={handleCancelListing}
-            //     className={`cursor-pointer h-12 w-full py-2 px-4 border
-            //      bg-gray-400
-            //     rounded-md grid place-items-center mt-3`}
-            //   >
-            //     <p className="text-[20px] font-bold">Cancel listing</p>
-            //   </button>
-            // </div>
-
-            <div
-              className="cursor-pointer h-fit py-3 px-4 mt-12 shadow-button-wallet bg-[#24C3BC] rounded-md grid place-items-center"
-              onClick={handleCancelListing}
-            >
-              <p className="text-[20px] uppercase font-bold">Cancel listing</p>
-            </div>
-          )}
+  if (nftData && !isOwner)
+    return (
+      <div className="p-4 mt-10 border border-gray-500 rounded-md bg-blue-800/50 gap-10 ">
+        <div className="items-center justify-between border-b py-2 border-gray-400/50">
+          <div className="flex gap-2 items-center">
+            <p className="text-[#24C3BC] text-[32px] font-bold">
+              {getShortPrice(listingData?.data[0]?.price)}
+            </p>
+            <FaEthereum className="text-[24px] mr-2" />
+          </div>
+          <p>
+            <span className="text-gray-400">Sale ends:</span>{" "}
+            <span>{formatDate(listingData?.data[0]?.time_end)}</span>
+          </p>
         </div>
-      ) : (
-        <ButtonApproveForAll />
-      )}
-    </div>
-  );
+
+        <Buy nftData={nftData} />
+      </div>
+    );
+
+  if (nftData && isOwner)
+    return (
+      <div className="mt-10 relative p-4 border border-gray-500 rounded-md bg-blue-800/50 gap-10 ">
+        {loading && (
+          <div className="rounded-md absolute inset-0 h-full w-full animate-pulse z-10 bg-blue-800"></div>
+        )}
+
+        {isListing ? (
+          <div className="flex gap-2 items-center">
+            <p className="text-[#24C3BC] text-[32px] font-bold">
+              {getShortPrice(listingData?.data[0]?.price)}
+            </p>
+            <FaEthereum className="text-[24px] mr-2" />
+          </div>
+        ) : (
+          <p className="text-[#24C3BC] text-[24px] font-bold">Not Listed</p>
+        )}
+
+        {isApproved ? (
+          <div>
+            {!isListing ? (
+              <div>
+                <div className="flex h-14 gap-5 mt-5">
+                  <div className="bg-blue-800/50 border border-gray-500 rounded-md  px-3 py-2 w-fit flex items-center">
+                    <input
+                      type="number"
+                      className="h-full bg-transparent outline-none mr-3 border-none active::outline-none"
+                      value={priceInEther} // bind the input to the priceInEther state
+                      onChange={(e) =>
+                        setPriceInEther(parseFloat(e.target.value))
+                      } //
+                    />
+                    <FaEthereum className="text-[24px] mr-2" />
+                  </div>
+
+                  <DatePicker
+                    className="text-black w-full"
+                    value={dayjs(timeEndList).local()} // Convert the state value to Day.js object before passing it to DatePicker
+                    format="YYYY-MM-DD HH:mm:ss"
+                    showTime
+                    onChange={handleDateChange}
+                  />
+                </div>
+
+                <button
+                  disabled={!activeAction}
+                  onClick={handleListingSignature}
+                  className={`cursor-pointer h-12 w-full py-2 px-4 border ${
+                    signing ? "bg-gray-400" : "bg-[#24C3BC]"
+                  } rounded-md grid place-items-center mt-3`}
+                >
+                  {signing ? (
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin">
+                        <AiOutlineLoading3Quarters />
+                      </div>
+                      <p className="text-[20px] font-bold ml-5">Signing</p>
+                    </div>
+                  ) : (
+                    <p className="text-[20px] font-bold">List</p>
+                  )}
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button
+                  // disabled={!activeAction}
+                  onClick={handleCancelListing}
+                  className={`cursor-pointer h-12 w-full py-2 px-4 border
+                   bg-gray-400
+                  rounded-md grid place-items-center mt-3`}
+                >
+                  <p className="text-[20px] font-bold">Cancel listing</p>
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <ButtonApproveForAll />
+        )}
+      </div>
+    );
+
+  return <></>;
 };
 
 export default ListingForm;

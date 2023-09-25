@@ -21,7 +21,8 @@ import EventBanner from "@/assets/png/event_banner.png";
 import EventBannerMobile from "@/assets/png/event_banner_rotate90.png";
 import StarksportVideo from "@/assets/video/collection.mov";
 import { nftC1AddressesArray } from "@/constants/nftc1Addresses";
-
+import CountdownTimer from "@/components/CountDownTime/CountdownTimer";
+import PNGNftSS from "@/assets/png/nftSS.jpg";
 // const provider = new Provider({ sequencer: { network: "mainnet-alpha" } });
 const provider = new RpcProvider({
   nodeUrl:
@@ -87,7 +88,7 @@ const StarksportMint = () => {
           alt=""
           className="w-full absolute inset-0 -z-10 h-full md:hidden block"
         />
-        <video
+        {/* <video
           autoPlay
           loop
           muted
@@ -95,35 +96,41 @@ const StarksportMint = () => {
           className="lg:max-w-[420px] md:max-w-[300px] rounded-[12px] h-fit  md:mr-[30px] lg:mr-[40px]"
         >
           <source src={StarksportVideo} type="video/mp4"></source>
-        </video>
+        </video> */}
+        <div className="lg:max-w-[420px] w-full md:max-w-[300px] h-full aspect-square  rounded-[12px]  md:mr-[30px] lg:mr-[40px]">
+          <img src={PNGNftSS} alt="" className="rounded-[12px]" />
+        </div>
 
         <div className="flex-1 flex flex-col justify-between ">
           <div className="md:mt-0 my-[20px]">
-            <p className="text-[36px] text-[#00FFFF] font-bold">
-              Starksport NFTs
+            <p className="text-[32px] text-[#00FFFF] font-bold">
+              Starksport NFT Utilities{" "}
             </p>
-            <p className="text-[24px] text-white ">Limited Edition</p>
-            <p className="md:mt-10 mt-[20px] text-base font-semibold">
+            <p className="text-[20px] text-white font-bold">
+              3000 Limited Edition
+            </p>
+            <p className="md:mt-10 mt-[20px] text-base">
               - Early access & Freemint for the upcoming PolySport project.
             </p>
-            <p className="text-base font-semibold space-y-1 ">
-              - Access Starksport Launchpad.
+            <p className="text-base space-y-1 ">
+              - Boosting your revenue sharings
             </p>
-            <p className="text-base font-semibold ">
-              - Reduce fee and access NFT Lending on Starksport Marketplace.
+            <p className="text-base  ">
+              - Boosting your allocations on Starksport Launchpad.
             </p>
-            <p className="text-base font-semibold ">
-              - Airdrop 300 SFN tokens for NFT holder.
+            <p className="text-base  ">
+              - Access NFT Lending on Starksport Marketplace.
+            </p>
+            <p className="text-base  ">
+              - Airdrop 300 SFN tokens for NFT holders.
             </p>
           </div>
-
+          <CountdownTimer />
           {/* <Button2 title="MINT NFT" className="mt-10" /> */}
           <div className="md:mt-10 mt-[20px]">
             <div className="flex md:flex-row flex-col justify-between">
-              <p className="text-xl font-semibold">
-                Total Minted: {totalMinted}
-              </p>
-              <p className="text-xl font-semibold">Price: 0.015 ETH</p>
+              <p className="">Total Minted: {totalMinted}</p>
+              <p className="">Price: 0.015 ETH</p>
             </div>
             <div
               className="cursor-pointer h-fit py-3 px-4 mt-2 shadow-button-wallet bg-[#24C3BC] rounded-md grid place-items-center"
@@ -153,7 +160,7 @@ const PremierLeagueMint = () => {
         const nftAddress = logoAddressesArray[nftAddressIndex];
         const nftContract = new Contract(logoAbi, nftAddress, provider);
         const totalSupplyNft = await nftContract.call("totalSupply");
-    
+
         totalMinted += totalSupplyNft.totalSupply.low.words[0];
       }
       setTotalMinted(totalMinted);
@@ -210,25 +217,23 @@ const PremierLeagueMint = () => {
 
         <div className="flex-1 flex flex-col justify-between ">
           <div className="md:mt-0 my-[20px]">
-            <p className="text-[36px] text-[#00FFFF] font-bold">Game Rule</p>
-            <p className="text-base font-semibold ">
+            <p className="text-[32px] text-[#00FFFF] font-bold">Game Rule</p>
+            <p className=" ">
               - You can mint to receive randomly a football club logo in Premier
               League.
             </p>
-            <p className="text-base font-semibold ">
-              - Mint Price is 0.0013 ETH.
-            </p>
-            <p className="text-base font-semibold ">
+            <p className="">- Mint Price is 0.0013 ETH.</p>
+            <p className=" ">
               - No limit, the more you mint, the more chances you have to win.
             </p>
           </div>
           <div className="space-y-2">
-            <p className="text-[36px] text-[#00FFFF] font-bold ">Reward</p>
-            <p className="text-base font-semibold ">
+            <p className="text-[32px] text-[#00FFFF] font-bold ">Reward</p>
+            <p className="text-base  ">
               - 80% of the revenue will be distributed to the holders of the
               champion team logo.
             </p>
-            <p className="text-base font-semibold ">
+            <p className="text-base ">
               - 20% of the revenue will be distributed to treasury.
             </p>
           </div>
@@ -236,10 +241,8 @@ const PremierLeagueMint = () => {
           {/* <Button2 title="MINT NFT" className="mt-10" /> */}
           <div className="md:mt-10 mt-[20px]">
             <div className="flex md:flex-row flex-col justify-between">
-              <p className="text-xl font-semibold">
-                Total Minted: {totalMinted}
-              </p>
-              <p className="text-xl font-semibold">Price: 0.0013 ETH</p>
+              <p className="">Total Minted: {totalMinted}</p>
+              <p className="">Price: 0.0013 ETH</p>
             </div>
             <div
               className="cursor-pointer h-fit py-3 px-4 mt-2 shadow-button-wallet bg-[#24C3BC] rounded-md grid place-items-center"
@@ -269,7 +272,7 @@ const UEFALeagueMint = () => {
         const nftAddress = nftC1AddressesArray[nftAddressIndex];
         const nftContract = new Contract(logoAbi, nftAddress, provider);
         const totalSupplyNft = await nftContract.call("totalSupply");
-     
+
         totalMinted += totalSupplyNft.totalSupply.low.words[0];
       }
       setTotalMinted(totalMinted);
@@ -324,26 +327,24 @@ const UEFALeagueMint = () => {
 
         <div className="flex-1 flex flex-col justify-between ">
           <div className="md:mt-0 my-[20px]">
-            <p className="text-[36px] text-[#00FFFF] font-bold">Game Rule</p>
-            <p className="text-base font-semibold ">
+            <p className="text-[32px] text-[#00FFFF] font-bold">Game Rule</p>
+            <p className=" ">
               - You can mint to receive randomly a football club Jersey in
               Champions League
             </p>
-            <p className="text-base font-semibold ">
-              - Mint Price is 0.0013 ETH.
-            </p>
-            <p className="text-base font-semibold ">
+            <p className="">- Mint Price is 0.0013 ETH.</p>
+            <p className="">
               - No limit, the more you mint, the more chances you have to win.
             </p>
           </div>
           <div className="space-y-2">
-            <p className="text-[36px] text-[#00FFFF] font-bold ">Reward</p>
+            <p className="text-[32px] text-[#00FFFF] font-bold ">Reward</p>
 
-            <p className="text-base font-semibold ">
+            <p className=" ">
               - 80% of the revenue will be distributed to the holders of the
               champion team jersey.
             </p>
-            <p className="text-base font-semibold">
+            <p className="">
               - 20% of the revenue will be distributed to treasury.
             </p>
           </div>
@@ -351,10 +352,8 @@ const UEFALeagueMint = () => {
           {/* <Button2 title="MINT NFT" className="mt-10" /> */}
           <div className="md:mt-10 mt-[20px]">
             <div className="flex md:flex-row flex-col justify-between">
-              <p className="text-xl font-semibold">
-                Total Minted: {totalMinted}
-              </p>
-              <p className="text-xl font-semibold">Price: 0.0013 ETH</p>
+              <p className="">Total Minted: {totalMinted}</p>
+              <p className="">Price: 0.0013 ETH</p>
             </div>
             <div
               className="cursor-pointer h-fit py-3 px-4 mt-2 shadow-button-wallet bg-[#24C3BC] rounded-md grid place-items-center"
