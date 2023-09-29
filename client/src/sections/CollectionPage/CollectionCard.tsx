@@ -8,12 +8,12 @@ const CollectionCard = ({ data }: { data: any }) => {
   return (
     <button
       onClick={() => navigation(`/collection/${data.contract_address}`)}
-      className="overflow-hidden w-full duration-700 rounded-lg "
+      className="overflow-hidden w-full duration-700 rounded-lg border-2 border-[#24C3BC] p-2 bg-[#24C3BC]/10"
     >
       <div className="overflow-hidden">
         <img
           src={data.image || NFT}
-          className="aspect-square w-full object-cover transition-all hover:scale-110 "
+          className="aspect-square w-full object-cover transition-all hover:scale-110 rounded-md"
           alt=""
         />
       </div>
@@ -23,16 +23,12 @@ const CollectionCard = ({ data }: { data: any }) => {
         </p>
         <div className="flex justify-around">
           <div className="text-lg text-left ">
-            <p className="text-slate-500">Volume</p>
-            <p className="font-semibold text-lg">
-              {getShortPrice3(data.volume)}
-            </p>
+            <p className="text-slate-500 text-sm">Volume</p>
+            <p className="font-semibold ">{getShortPrice3(data.volume)} ETH</p>
           </div>
           <div className="text-lg text-left">
-            <p className="text-slate-500">Price</p>
-            <p className="font-semibold text-lg">{`${
-              data.floor_price ?? "-"
-            } ETH`}</p>
+            <p className="text-slate-500 text-sm">Price</p>
+            <p className="font-semibold ">{`${data.floor_price ?? "-"} ETH`}</p>
           </div>
         </div>
       </div>

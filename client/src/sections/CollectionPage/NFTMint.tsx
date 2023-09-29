@@ -125,7 +125,7 @@ const StarksportMint = () => {
               - Airdrop 300 SFN tokens for NFT holders.
             </p>
           </div>
-          <CountdownTimer />
+          {/* <CountdownTimer /> */}
           {/* <Button2 title="MINT NFT" className="mt-10" /> */}
           <div className="md:mt-10 mt-[20px]">
             <div className="flex md:flex-row flex-col justify-between">

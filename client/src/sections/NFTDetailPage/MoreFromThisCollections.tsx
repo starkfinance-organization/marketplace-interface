@@ -24,6 +24,13 @@ const MoreFromThisCollections = () => {
     }
   }, [collectionData]);
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <div className="w-full 2xl:px-[10vw] lg:px-20 px-5 pb-14 overflow-hidden ">
       <div className="flex items-center justify-center lg:px-[90px] px-4">
@@ -53,6 +60,7 @@ const MoreFromThisCollections = () => {
         className="flex justify-center"
         onClick={() => {
           navigate(`/collection/${collections[0]?.contract_address}`);
+          scrollToTop();
         }}
       >
         <BtnMoreCollections />

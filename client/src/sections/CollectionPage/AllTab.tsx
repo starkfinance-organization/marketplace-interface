@@ -19,7 +19,6 @@ const AllTab = () => {
         return value.includes(searchCollection.toLowerCase());
       });
 
-      tempArr = tempArr.filter((item: any, index: number) => index < 5);
       setCollections(tempArr);
     }
   }, [collectionData, searchCollection]);

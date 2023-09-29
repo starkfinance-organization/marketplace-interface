@@ -28,7 +28,7 @@ const OfferWhenNotLogin = ({
 
       {isListing && (
         <div>
-          <NFTCurrentPrice nftData={data.data[0]} />
+          <NFTCurrentPrice nftData={data?.data[0]} />
 
           <div className="flex items-center justify-between gap-5 mt-[30px]">
             <Buy nftData={data.data[0]} />
