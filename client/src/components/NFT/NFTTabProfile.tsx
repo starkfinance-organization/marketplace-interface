@@ -66,11 +66,11 @@ const RowNFTTabProfile: React.FC<{
     }
   };
 
-  const handleCounter = () => {};
+  const handleCounter = () => { };
 
-  const handleAccept = () => {};
+  const handleAccept = () => { };
 
-  const handleCancelOfferMade = () => {};
+  const handleCancelOfferMade = () => { };
 
   const btn = () => {
     if (tabName == "Received") {
@@ -152,9 +152,15 @@ const RowNFTTabProfile: React.FC<{
         {calculateTimeDifference(data?.time_end)}
       </td>
 
+      <td className="text-xl font-bold text-center">{calculateTimeDifferenceList(data.time_end)}</td>
       {tabName == "Received" && (
         <td className=" pr-4 text-xl font-bold text-center">
-          {calculateTimeDifference(data?.created_at)}
+          {calculateTimeDifferenceList(data.created_at)}
+        </td>
+      )}
+      {tabName == "OfferMade" && (
+        <td className=" pr-4 text-xl font-bold text-center">
+          {calculateTimeDifferenceList(data.created_at)}
         </td>
       )}
       {tabName == "OfferMade" && (

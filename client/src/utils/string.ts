@@ -46,7 +46,8 @@ export const timestampToDate = (timestamp: number) => {
 };
 
 export const convertWeiToEther = (wei: string) => {
-  if (wei === undefined || wei === null) return 0;
+  if (wei === undefined || wei === null)
+    return 0;
   return Number(ethers.utils.formatEther(wei));
 };
 
@@ -156,11 +157,11 @@ export function calculateTimeDifference(targetTime: string): string {
     const days = Math.floor(hours / 24);
 
     if (days > 0) {
-      return `${days} day${days > 1 ? "s" : ""} from now`;
+      return `${days} day${days > 1 ? "s" : ""}`;
     } else if (hours > 0) {
-      return `${hours} hour${hours > 1 ? "s" : ""} from now`;
+      return `${hours} hour${hours > 1 ? "s" : ""}`;
     } else {
-      return `${minutes} minute${minutes > 1 ? "s" : ""} from now`;
+      return `${minutes} minute${minutes > 1 ? "s" : ""}`;
     }
   } else {
     // Target time is the same as the current time

@@ -24,7 +24,7 @@ const OfferWhenNotLogin = ({
   console.log(data);
   return (
     <div>
-      <ModalMakeOffer isShowing={isShowing} hide={toggle} data={data} />
+      <ModalMakeOffer isShowing={isShowing} hide={toggle} nftData={data} />
 
       {isListing && (
         <div>
@@ -42,7 +42,7 @@ const OfferWhenNotLogin = ({
       </div>
       <div className="my-6">
         {/* <ListingTable /> */}
-        <OffersTable />
+        <OffersTable nftData={data} />
       </div>
 
       <div className="my-6">

@@ -15,48 +15,36 @@ export const CurrencyValues = [
     label: "ETH",
     value: "ETH",
   },
-  {
-    label: "USBC",
-    value: "USBC",
-  },
-  {
-    label: "STRK",
-    value: "STRK",
-  },
+  // {
+  //   label: "USBC",
+  //   value: "USBC",
+  // },
+  // {
+  //   label: "STRK",
+  //   value: "STRK",
+  // },
 ];
 
 export const DurationValues = [
   {
-    label: "Infinity",
-    value: "-1",
-  },
-  {
-    label: "1 hours",
-    value: "1h",
-  },
-  {
-    label: "6 hours",
-    value: "6h",
-  },
-  {
     label: "1 day",
-    value: "1d",
+    value: 1,
   },
   {
     label: "3 days",
-    value: "3d",
+    value: 3
   },
   {
     label: "7 days",
-    value: "7d",
+    value: 7,
   },
   {
     label: "1 month",
-    value: "1m",
+    value: 30,
   },
   {
     label: "3 months",
-    value: "3m",
+    value: 90,
   },
 ];
 
