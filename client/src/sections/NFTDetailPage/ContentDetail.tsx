@@ -83,7 +83,7 @@ const ContentDetail = () => {
                 </div>
               ) : (
                 <div>
-                  <OfferWhenNotLogin data={nftListing} isListing={isListing} />
+                  <OfferWhenNotLogin data={nftData} isListing={isListing} />
                 </div>
               )}
             </div>

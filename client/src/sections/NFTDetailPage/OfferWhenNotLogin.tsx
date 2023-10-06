@@ -32,10 +32,10 @@ const OfferWhenNotLogin = ({
 
           <div className="flex items-center justify-between gap-5 mt-[30px]">
             <Buy nftData={data.data[0]} />
-            <BtnMakeOffer toggle={toggle} />
           </div>
         </div>
       )}
+      <BtnMakeOffer toggle={toggle} />
 
       <div className={`${isListing && "mt-[60px]"} `}>
         <PriceHistoryTable />
