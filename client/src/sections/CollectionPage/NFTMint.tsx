@@ -75,17 +75,7 @@ const StarksportMint = () => {
 			(wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected)
 		) {
 			if (wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected) {
-				await window.okxwallet.starknet.account.execute({
-					contractAddress: ethAddress,
-					entrypoint: "approve",
-					calldata: [nftAddress, 1500000000000000, 1],
-				});
-
-				return window.okxwallet.starknet.account.execute({
-					contractAddress: nftAddress,
-					entrypoint: "publicmint_mint",
-					calldata: [],
-				});
+				return window.okxwallet.starknet.account.execute(calls);
 			} else return execute();
 		} else {
 			alert("Please connect wallet");
@@ -210,21 +200,7 @@ const PremierLeagueMint = () => {
 			(wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected)
 		) {
 			if (wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected) {
-				await window.okxwallet.starknet.account.execute({
-					contractAddress: ethAddress,
-					entrypoint: "approve",
-					calldata: [
-						logoAddressesArray[totalMinted % 20],
-						"1300000000000000",
-						0,
-					],
-				});
-
-				return window.okxwallet.starknet.account.execute({
-					contractAddress: logoAddressesArray[totalMinted % 20],
-					entrypoint: "mint",
-					calldata: [],
-				});
+				return window.okxwallet.starknet.account.execute(calls);
 			} else return execute();
 		} else {
 			alert("Please connect wallet");
@@ -343,21 +319,7 @@ const UEFALeagueMint = () => {
 			(wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected)
 		) {
 			if (wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected) {
-				await window.okxwallet.starknet.account.execute({
-					contractAddress: ethAddress,
-					entrypoint: "approve",
-					calldata: [
-						nftC1AddressesArray[totalMinted % 32],
-						"1300000000000000",
-						0,
-					],
-				});
-
-				return window.okxwallet.starknet.account.execute({
-					contractAddress: nftC1AddressesArray[totalMinted % 32],
-					entrypoint: "mint",
-					calldata: [],
-				});
+				return window.okxwallet.starknet.account.execute(calls);
 			} else return execute();
 		} else {
 			alert("Please connect wallet");
@@ -475,17 +437,7 @@ const LogoMint = () => {
 			(wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected)
 		) {
 			if (wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected) {
-				await window.okxwallet.starknet.account.execute({
-					contractAddress: ethAddress,
-					entrypoint: "approve",
-					calldata: [nftAddressToMint, "1300000000000000", 0],
-				});
-
-				return window.okxwallet.starknet.account.execute({
-					contractAddress: nftAddressToMint,
-					entrypoint: "mint",
-					calldata: [],
-				});
+				return window.okxwallet.starknet.account.execute(calls);
 			} else return execute();
 		} else {
 			alert("Please connect wallet");

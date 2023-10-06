@@ -67,23 +67,25 @@ const Buy: React.FC<BuyProps> = (props) => {
 		"0", //   customNonFungibleTokenRecipient
 	];
 
+	const calls = [
+		{
+			contractAddress: addresses.ethToken.address,
+			entrypoint: "approve",
+			calldata: [
+				addresses.marketplace.address,
+				convertEtherToWei(listingData?.data[0]?.price.toString()).toString(),
+				0,
+			],
+		},
+		{
+			contractAddress: addresses.marketplace.address,
+			entrypoint: "matchAskWithTakerBid",
+			calldata: callDataBuyNow,
+		},
+	];
+
 	const buyNow = useStarknetExecute({
-		calls: [
-			{
-				contractAddress: addresses.ethToken.address,
-				entrypoint: "approve",
-				calldata: [
-					addresses.marketplace.address,
-					convertEtherToWei(listingData?.data[0]?.price.toString()).toString(),
-					0,
-				],
-			},
-			{
-				contractAddress: addresses.marketplace.address,
-				entrypoint: "matchAskWithTakerBid",
-				calldata: callDataBuyNow,
-			},
-		],
+		calls,
 	});
 
 	const { wallet } = useGlobalContext();
@@ -95,23 +97,7 @@ const Buy: React.FC<BuyProps> = (props) => {
 		) {
 			let result;
 			if (wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected) {
-				await window.okxwallet.starknet.account.execute({
-					contractAddress: addresses.ethToken.address,
-					entrypoint: "approve",
-					calldata: [
-						addresses.marketplace.address,
-						convertEtherToWei(
-							listingData?.data[0]?.price.toString()
-						).toString(),
-						0,
-					],
-				});
-
-				result = await window.okxwallet.starknet.account.execute({
-					contractAddress: addresses.marketplace.address,
-					entrypoint: "matchAskWithTakerBid",
-					calldata: callDataBuyNow,
-				});
+				result = await window.okxwallet.starknet.account.execute(calls);
 			} else result = await buyNow.execute();
 
 			if (result.transaction_hash) {
