@@ -12,6 +12,7 @@ import { CgProfile } from "react-icons/cg";
 // import { useGetStarknetIDDomain } from "@/queries/starknet/useGetStarknetIDDomain";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { WALLETS } from "@/context/types";
+import useCurrentAccount from "@/hook/useAccount";
 
 type ButtonConnectWalletProps = {
 	modalState: ModalWalletProps;
@@ -20,7 +21,7 @@ type ButtonConnectWalletProps = {
 declare const window: any;
 
 const ButtonConnectWallet: FC<ButtonConnectWalletProps> = ({ modalState }) => {
-	const { address, status } = useAccount();
+	const { address, status } = useCurrentAccount();
 	const { disconnect } = useConnectors();
 	const isProfilePage = useMatch("/account/:address");
 	const { wallet, walletAddress, setWalletConnected } = useGlobalContext();

@@ -10,168 +10,169 @@ import arrowDown from "@/assets/svg/arrowDown.svg";
 import { useGetCollectionNFTs } from "@/queries/useGetCollectionNFTs";
 import { useParams } from "react-router-dom";
 import NFTCardWithoutPrice from "@/components/NFTCard/NFTCardWithoutPrice";
+import useCurrentAccount from "@/hook/useAccount";
 
 const CollectedTab = () => {
-  const { contract_address } = useParams();
-  // menu dropdown in left side
-  const statusFilterType = [
-    "Recently Listed",
-    "Price Low To High",
-    "Price High To Low",
-  ];
-  const [statusFilter, setStatusFilter] = useState(statusFilterType[0]);
-  const [isOpenEvent, setIsOpenEvent] = useState(false);
-  const [isOpenRecentlyListed, setIsOpenEventRecentlyListed] = useState(false);
-  const [typeMoney, setTypeMoney] = useState("ETH");
-  const [visibleFilter, setVisibleFilter] = useState(false);
-  const { data: collectionData } = useGetCollectionNFTs(
-    contract_address || "",
-    100
-  );
-  const { address } = useAccount();
-  const { data: collections } = useGetCollections();
-  const [NFTs, setNFTs] = useState<any[]>([]);
-  const [collectionShow, setCollectionShow] = useState<any[]>([]);
-  const { data: accountNFTs } = useGetAccountNFTs(address || "", 30);
-  const [tokenID, setTokenID] = useState("");
-  const onChangeInputTokenID = (e: any) => {
-    setTokenID(e.target.value);
-  };
+	const { contract_address } = useParams();
+	// menu dropdown in left side
+	const statusFilterType = [
+		"Recently Listed",
+		"Price Low To High",
+		"Price High To Low",
+	];
+	const [statusFilter, setStatusFilter] = useState(statusFilterType[0]);
+	const [isOpenEvent, setIsOpenEvent] = useState(false);
+	const [isOpenRecentlyListed, setIsOpenEventRecentlyListed] = useState(false);
+	const [typeMoney, setTypeMoney] = useState("ETH");
+	const [visibleFilter, setVisibleFilter] = useState(false);
+	const { data: collectionData } = useGetCollectionNFTs(
+		contract_address || "",
+		100
+	);
+	const { address } = useCurrentAccount();
+	const { data: collections } = useGetCollections();
+	const [NFTs, setNFTs] = useState<any[]>([]);
+	const [collectionShow, setCollectionShow] = useState<any[]>([]);
+	const { data: accountNFTs } = useGetAccountNFTs(address || "", 30);
+	const [tokenID, setTokenID] = useState("");
+	const onChangeInputTokenID = (e: any) => {
+		setTokenID(e.target.value);
+	};
 
-  useEffect(() => {
-    if (collections) {
-      let tempArr = collections?.data.filter(
-        (item: any) => item.banner_show == 1
-      );
-      tempArr = tempArr.slice(0, 4);
-      setCollectionShow(tempArr);
-    }
-  }, [collections]);
+	useEffect(() => {
+		if (collections) {
+			let tempArr = collections?.data.filter(
+				(item: any) => item.banner_show == 1
+			);
+			tempArr = tempArr.slice(0, 4);
+			setCollectionShow(tempArr);
+		}
+	}, [collections]);
 
-  useEffect(() => {
-    if (collectionData) {
-      let teampArr = collectionData.pages.flatMap((page) => page.data);
-      setNFTs(teampArr);
-    }
-  }, [collectionData]);
+	useEffect(() => {
+		if (collectionData) {
+			let teampArr = collectionData.pages.flatMap((page) => page.data);
+			setNFTs(teampArr);
+		}
+	}, [collectionData]);
 
-  const handleUSD = () => {
-    setTypeMoney("USD");
-  };
+	const handleUSD = () => {
+		setTypeMoney("USD");
+	};
 
-  const handleETH = () => {
-    setTypeMoney("ETH");
-  };
+	const handleETH = () => {
+		setTypeMoney("ETH");
+	};
 
-  const filterComp = () => {
-    return (
-      <div className="min-w-[230px]">
-        <div className="min-w-[200px] relative">
-          <div className="flex w-full flex-col border-[#24C3BC] border-b-[1px] cursor-pointer">
-            <div
-              onClick={() => setIsOpenEvent((prev) => !prev)}
-              className={`flex justify-between pb-3 select-none font-bold text-xl max-md:text-sm`}
-            >
-              <p>Status</p>
-              <img
-                className={`transition-all ${
-                  isOpenEvent ? " rotate-180" : "rotate-0"
-                }`}
-                src={arrowDown}
-                alt=""
-              />
-            </div>
-            <div
-              className={`flex flex-col w-full left-0 top-[50px] transition-max-h duration-300 ${
-                isOpenEvent ? "max-h-[200px] pb-3" : "max-h-0 overflow-hidden"
-              }`}
-            >
-              {statusFilterType.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => setStatusFilter(item)}
-                  className="flex justify-between items-center py-3 hover:bg-[#24C3BC] hover:bg-opacity-10 hover:rounded-[10px] cursor-pointer"
-                >
-                  <p>{item}</p>
-                  <div className="w-[20px] h-[20px] border border-[#24C3BC] p-[3px] rounded-full">
-                    {statusFilter == item && (
-                      <div className="w-full h-full bg-[#24C3BC] rounded-full"></div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="min-w-[200px] relative">
-          <div className="flex w-full flex-col mt-3 border-[#24C3BC] border-b-[1px]">
-            <div
-              onClick={() => setIsOpenEventRecentlyListed((prev) => !prev)}
-              className={`flex justify-between pb-3 cursor-pointer select-none font-bold text-xl max-md:text-sm`}
-            >
-              <p>Price</p>
-              <img
-                className={`transition-all ${
-                  isOpenRecentlyListed ? " rotate-180" : "rotate-0"
-                }`}
-                src={arrowDown}
-                alt=""
-              />
-            </div>
-            <div
-              className={`flex flex-col gap-[15px]  w-full left-0 top-[50px] transition-max-h duration-300 ${
-                isOpenRecentlyListed
-                  ? "max-h-[200px] py-3"
-                  : "max-h-0 overflow-hidden"
-              }`}
-            >
-              <div className="flex md:justify-between justify-around">
-                <div
-                  onClick={handleETH}
-                  className={`px-[32px] py-2 border rounded-[10px] border-[#24C3BC] cursor-pointer ${
-                    typeMoney == "ETH"
-                      ? "bg-[#24C3BC]"
-                      : "bg-[#24C3BC] bg-opacity-10"
-                  }`}
-                >
-                  ETH
-                </div>
-                <div
-                  onClick={handleUSD}
-                  className={`px-[32px] py-2 border rounded-[10px] border-[#24C3BC] cursor-pointer  ${
-                    typeMoney == "USD"
-                      ? "bg-[#24C3BC]"
-                      : "bg-[#24C3BC] bg-opacity-10"
-                  }`}
-                >
-                  USD
-                </div>
-              </div>
-              <div className="flex md:justify-between justify-around items-center">
-                <div
-                  className={`px-[25px] py-2 border rounded-[10px] border-[#24C3BC] bg-[#24C3BC] bg-opacity-10 cursor-pointer`}
-                >
-                  Min
-                </div>
-                <div>
-                  <p>TO</p>
-                </div>
-                <div
-                  className={`px-[25px] py-2 border rounded-[10px] border-[#24C3BC] bg-[#24C3BC] bg-opacity-10 cursor-pointer`}
-                >
-                  MAX
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
+	const filterComp = () => {
+		return (
+			<div className="min-w-[230px]">
+				<div className="min-w-[200px] relative">
+					<div className="flex w-full flex-col border-[#24C3BC] border-b-[1px] cursor-pointer">
+						<div
+							onClick={() => setIsOpenEvent((prev) => !prev)}
+							className={`flex justify-between pb-3 select-none font-bold text-xl max-md:text-sm`}
+						>
+							<p>Status</p>
+							<img
+								className={`transition-all ${
+									isOpenEvent ? " rotate-180" : "rotate-0"
+								}`}
+								src={arrowDown}
+								alt=""
+							/>
+						</div>
+						<div
+							className={`flex flex-col w-full left-0 top-[50px] transition-max-h duration-300 ${
+								isOpenEvent ? "max-h-[200px] pb-3" : "max-h-0 overflow-hidden"
+							}`}
+						>
+							{statusFilterType.map((item, index) => (
+								<div
+									key={index}
+									onClick={() => setStatusFilter(item)}
+									className="flex justify-between items-center py-3 hover:bg-[#24C3BC] hover:bg-opacity-10 hover:rounded-[10px] cursor-pointer"
+								>
+									<p>{item}</p>
+									<div className="w-[20px] h-[20px] border border-[#24C3BC] p-[3px] rounded-full">
+										{statusFilter == item && (
+											<div className="w-full h-full bg-[#24C3BC] rounded-full"></div>
+										)}
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+				<div className="min-w-[200px] relative">
+					<div className="flex w-full flex-col mt-3 border-[#24C3BC] border-b-[1px]">
+						<div
+							onClick={() => setIsOpenEventRecentlyListed((prev) => !prev)}
+							className={`flex justify-between pb-3 cursor-pointer select-none font-bold text-xl max-md:text-sm`}
+						>
+							<p>Price</p>
+							<img
+								className={`transition-all ${
+									isOpenRecentlyListed ? " rotate-180" : "rotate-0"
+								}`}
+								src={arrowDown}
+								alt=""
+							/>
+						</div>
+						<div
+							className={`flex flex-col gap-[15px]  w-full left-0 top-[50px] transition-max-h duration-300 ${
+								isOpenRecentlyListed
+									? "max-h-[200px] py-3"
+									: "max-h-0 overflow-hidden"
+							}`}
+						>
+							<div className="flex md:justify-between justify-around">
+								<div
+									onClick={handleETH}
+									className={`px-[32px] py-2 border rounded-[10px] border-[#24C3BC] cursor-pointer ${
+										typeMoney == "ETH"
+											? "bg-[#24C3BC]"
+											: "bg-[#24C3BC] bg-opacity-10"
+									}`}
+								>
+									ETH
+								</div>
+								<div
+									onClick={handleUSD}
+									className={`px-[32px] py-2 border rounded-[10px] border-[#24C3BC] cursor-pointer  ${
+										typeMoney == "USD"
+											? "bg-[#24C3BC]"
+											: "bg-[#24C3BC] bg-opacity-10"
+									}`}
+								>
+									USD
+								</div>
+							</div>
+							<div className="flex md:justify-between justify-around items-center">
+								<div
+									className={`px-[25px] py-2 border rounded-[10px] border-[#24C3BC] bg-[#24C3BC] bg-opacity-10 cursor-pointer`}
+								>
+									Min
+								</div>
+								<div>
+									<p>TO</p>
+								</div>
+								<div
+									className={`px-[25px] py-2 border rounded-[10px] border-[#24C3BC] bg-[#24C3BC] bg-opacity-10 cursor-pointer`}
+								>
+									MAX
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	};
 
-  return (
-    <div className="flex flex-col gap-[30px] max-lg:flex-col text-sm md:text-xl">
-      {/* <div className="flex min-w-[230px] md:gap-[30px] gap-5">
+	return (
+		<div className="flex flex-col gap-[30px] max-lg:flex-col text-sm md:text-xl">
+			{/* <div className="flex min-w-[230px] md:gap-[30px] gap-5">
         <div
           onClick={() => setVisibleFilter((prev) => !prev)}
           className={`flex md:max-w-[230px] max-md:w-fit w-full gap-4 px-5 py-3 items-center border border-[#24C3BC] bg-[#24C3BC] rounded-xl cursor-pointer ${
@@ -190,30 +191,30 @@ const CollectedTab = () => {
           />
         </div>
       </div> */}
-      <div className="flex gap-[30px] flex-1">
-        {visibleFilter && <div className="max-md:hidden">{filterComp()}</div>}
-        <div className="flex flex-col flex-1">
-          <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-2 grid-cols-2 md:gap-[30px] gap-4 w-full">
-            {NFTs?.map((item) => {
-              return (
-                <div className="md:max-w-[350px] w-full ">
-                  <NFTCardWithoutPrice nftData={item} />
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex items-center justify-center mt-[70px]">
-            <div
-              className="cursor-pointer w-[245px] h-fit py-3 px-4  shadow-button-wallet bg-[#24C3BC] rounded-md grid place-items-center"
-              onClick={() => {}}
-            >
-              <p className="text-[20px] uppercase font-bold">View More</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+			<div className="flex gap-[30px] flex-1">
+				{visibleFilter && <div className="max-md:hidden">{filterComp()}</div>}
+				<div className="flex flex-col flex-1">
+					<div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-2 grid-cols-2 md:gap-[30px] gap-4 w-full">
+						{NFTs?.map((item) => {
+							return (
+								<div className="md:max-w-[350px] w-full ">
+									<NFTCardWithoutPrice nftData={item} />
+								</div>
+							);
+						})}
+					</div>
+					<div className="flex items-center justify-center mt-[70px]">
+						<div
+							className="cursor-pointer w-[245px] h-fit py-3 px-4  shadow-button-wallet bg-[#24C3BC] rounded-md grid place-items-center"
+							onClick={() => {}}
+						>
+							<p className="text-[20px] uppercase font-bold">View More</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default CollectedTab;

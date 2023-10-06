@@ -25,6 +25,7 @@ import CountdownTimer from "@/components/CountDownTime/CountdownTimer";
 import PNGNftSS from "@/assets/png/nftSS.jpg";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { WALLETS } from "@/context/types";
+import useCurrentAccount from "@/hook/useAccount";
 // const provider = new Provider({ sequencer: { network: "mainnet-alpha" } });
 const provider = new RpcProvider({
 	nodeUrl:
@@ -35,7 +36,7 @@ declare const window: any;
 
 const StarksportMint = () => {
 	const [totalMinted, setTotalMinted] = useState(0);
-	const { status } = useAccount();
+	const { status } = useCurrentAccount();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -158,7 +159,7 @@ const StarksportMint = () => {
 
 const PremierLeagueMint = () => {
 	const [totalMinted, setTotalMinted] = useState(0);
-	const { status } = useAccount();
+	const { status } = useCurrentAccount();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -277,7 +278,7 @@ const PremierLeagueMint = () => {
 
 const UEFALeagueMint = () => {
 	const [totalMinted, setTotalMinted] = useState(0);
-	const { status } = useAccount();
+	const { status } = useCurrentAccount();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -395,7 +396,7 @@ const UEFALeagueMint = () => {
 
 const LogoMint = () => {
 	const [totalMinted, setTotalMinted] = useState(0);
-	const { status } = useAccount();
+	const { status } = useCurrentAccount();
 	const [nftAddressToMint, setNftAddressToMint] = useState("");
 	useEffect(() => {
 		const fetchData = async () => {

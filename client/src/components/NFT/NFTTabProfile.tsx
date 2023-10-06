@@ -1,6 +1,7 @@
 import { addresses } from "@/blockchain/address";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { WALLETS } from "@/context/types";
+import useCurrentAccount from "@/hook/useAccount";
 import { useGetCollectionsDetail } from "@/queries/useGetCollectionsDetailQuery";
 import usePutSellListing from "@/queries/usePutSellListing";
 import {
@@ -21,7 +22,7 @@ const RowNFTTabProfile: React.FC<{
 	refetch?: any;
 }> = ({ data, index, tabName, refetch }) => {
 	const navigate = useNavigate();
-	const { address, status } = useAccount();
+	const { address, status } = useCurrentAccount();
 	const handleClick = () => {
 		if (data?.collection_address !== undefined)
 			navigate(`/assets/${data.collection_address}/${data.token_id}`);

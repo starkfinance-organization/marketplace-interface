@@ -12,6 +12,7 @@ import { addresses } from "@/blockchain/address";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { WALLETS } from "@/context/types";
+import useCurrentAccount from "@/hook/useAccount";
 
 const provider = new Provider({ sequencer: { network: "mainnet-alpha" } });
 
@@ -23,7 +24,7 @@ declare const window: any;
 
 const Buy: React.FC<BuyProps> = (props) => {
 	const { nftData } = props;
-	const { address, status } = useAccount();
+	const { address, status } = useCurrentAccount();
 	const { listingData, refetchListingData } = useInforListingContext();
 	const putSellListing = usePutSellListing();
 	const [transaction_hash, settransaction_hash] = useState();

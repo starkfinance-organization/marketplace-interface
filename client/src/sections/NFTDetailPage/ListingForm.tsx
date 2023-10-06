@@ -28,6 +28,7 @@ import Buy from "./Buy";
 import utc from "dayjs/plugin/utc"; // import plugin
 import { WALLETS } from "@/context/types";
 import { useGlobalContext } from "@/context/GlobalContext";
+import useCurrentAccount from "@/hook/useAccount";
 dayjs.extend(utc); // use plugin
 
 // import { isUndefined } from "@/utils/object";
@@ -48,7 +49,7 @@ declare const window: any;
 const ListingForm: React.FC<ListingFormProps> = (props) => {
 	const { contract_address, token_id } = useParams();
 	const { nftData, priceInEther, timeEndList } = props;
-	const { account, address, status } = useAccount();
+	const { account, address, status } = useCurrentAccount();
 	const postSellListing = usePostSellListing();
 	const [isApproved, setIsApproved] = useState(false);
 	const [loading, setLoading] = useState(true);
