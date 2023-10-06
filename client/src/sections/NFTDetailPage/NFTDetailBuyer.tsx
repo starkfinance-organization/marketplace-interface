@@ -6,6 +6,10 @@ import ListingForm from "./ListingForm";
 import { InforListingContext } from "./context";
 import { useAccount } from "@starknet-react/core";
 import { useGetSellListing } from "@/queries/useGetSellListing";
+import ContentDetail from "./ContentDetail";
+import MoreFromThisCollections from "./MoreFromThisCollections";
+// import ContentDetail from "./ContentDetail";
+// import MoreFromThisCollections from "./MoreFromThisCollections";
 
 const DescriptionNFT: React.FC<{ description: string; traits: any[] }> = ({
   description,
@@ -40,7 +44,6 @@ const NFTDetailBuyer = () => {
   const { contract_address, token_id } = useParams();
   const { address, account, status } = useAccount();
   const [nftData, setNftData] = useState<any>();
-  // const [nftListingData, setNftListingData] = useState();
   const [isListing, setIsListing] = useState(false);
   const [owner, setOwner] = useState(false);
 
@@ -53,7 +56,6 @@ const NFTDetailBuyer = () => {
     contract_address || "",
     token_id || ""
   );
-
 
   useEffect(() => {
     if (nftResponse) setNftData(nftResponse);
@@ -71,8 +73,6 @@ const NFTDetailBuyer = () => {
     } else setOwner(false);
   }, [nftListing, nftResponse, address, status, account]);
 
-
-
   return (
     <InforListingContext.Provider
       value={{
@@ -80,37 +80,8 @@ const NFTDetailBuyer = () => {
         refetchListingData: refetch,
       }}
     >
-      <div className="flex gap-10 flex-col md:flex-row px-5 w-full mt-6 pb-32">
-        <div className="flex-1">
-          <img src={nftData?.image_url} alt="" className="rounded-xl w-full" />
-        </div>
-
-        <div className="flex-1">
-          <p className="text-[32px] font-bold">
-            {nftData?.name} #{nftData?.token_id}
-          </p>
-          <p>By {getShortAddress(nftData?.balance?.owner_address)}</p>
-          {nftListing?.data[0]?.status == "BUYING" ? (
-            <div className="mt-10 relative p-4 border border-gray-500 rounded-md bg-blue-800/50 gap-10 ">
-              <p className="font-bold">NFT is being processed</p>
-              {/* <div className="flex mt-2">
-                <p className="font-bold">Hash:</p>
-                <p className="ml-4">
-                  {getShortAddress(nftListing?.data[0]?.transaction_hash)}
-                </p>
-              </div> */}
-            </div>
-          ) : (
-            <div>
-              {(isListing || owner) && <ListingForm nftData={nftData} />}
-            </div>
-          )}
-          <DescriptionNFT
-            description={nftData?.description}
-            traits={nftData?.attributes}
-          />
-        </div>
-      </div>
+      <ContentDetail />
+      <MoreFromThisCollections />
     </InforListingContext.Provider>
   );
 };

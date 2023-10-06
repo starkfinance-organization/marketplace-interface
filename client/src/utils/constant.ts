@@ -27,32 +27,36 @@ export const CurrencyValues = [
 
 export const DurationValues = [
   {
+    label: "Infinity",
+    value: "-1",
+  },
+  {
     label: "1 hours",
-    value: "1 hours",
+    value: "1h",
   },
   {
     label: "6 hours",
-    value: "6 hours",
+    value: "6h",
   },
   {
     label: "1 day",
-    value: "1 day",
+    value: "1d",
   },
   {
     label: "3 days",
-    value: "3 days",
+    value: "3d",
   },
   {
     label: "7 days",
-    value: "7 days",
+    value: "7d",
   },
   {
     label: "1 month",
-    value: "1 month",
+    value: "1m",
   },
   {
     label: "3 months",
-    value: "3 month",
+    value: "3m",
   },
 ];
 

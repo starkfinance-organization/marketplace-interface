@@ -6,40 +6,26 @@ import { BiChevronRight } from "react-icons/bi";
 import CollectionCard from "@/components/CollectionCard/CollectionCard";
 import { route } from "@/routes/config";
 
-const PhotoMusic = () => {
-  const { data: collectionData } = useGetCollections();
+const PhotoMusic: React.FC<{ collections: any }> = ({ collections }) => {
   const navigate = useNavigate();
 
-  const [collections, setCollections] = useState<any[]>([]);
-  const handleClick = () => {
-    navigate(route.collection);
-  };
-  useEffect(() => {
-    if (collectionData) {
-      let tempArr = collectionData.data.filter(
-        (item: any, index: number) => index < 5
-      );
-      setCollections(tempArr);
-    }
-  }, [collectionData]);
-
   return (
-    <div className="w-full pb-14 overflow-hidden">
-      <div className="flex items-center justify-between lg:px-[90px] px-4">
-        <p className="font-bold text-2xl text-white uppercase">
-          PFPs , Photography, Music
+    <div className="w-full pb-[60px] overflow-hidden">
+      <div className="flex items-center justify-between pb-[50px]">
+        <p className="font-bold md:text-[32px] text-[24px] text-[#24C3BC]">
+          Trending in PFPs, Photography, Music
         </p>
         <button
           className="flex items-center"
           onClick={() => navigate("/collection")}
         >
-          <p className="text-sm font-medium uppercase">View Category</p>
+          <p className="md:text-base text-xs font-normal">View Category</p>
           <BiChevronRight className="h-8 w-8 text-[16px] text-white" />
         </button>
       </div>
-      <div className="flex no-scrollbar whitespace-nowrap overflow-x-auto lg:grid-flow-row lg:grid-rows-1 lg:grid-cols-5 gap-8 py-3 lg:mx-[90px] px-2">
+      <div className="flex no-scrollbar overflow-x-auto md:grid-cols-4 lg:grid-cols-5 gap-[20px]  ">
         {collections?.map((item: any) => (
-          <div className="flex-1 h-[345px] w-[330px] aspect-square">
+          <div className="max-w-[300px] flex-shrink-0 aspect-square">
             <CollectionCard collection={item} />
           </div>
         ))}

@@ -42,7 +42,7 @@ const VolumeCarousel = () => {
                 <img src={item.image} className="h-full w-full object-cover" />
               </div>
               <p className="font-bold text-[32px] mt-[32px]">{item.name}</p>
-              <p className="font-bold text-xl">
+              <p className="font-bold text-sm">
                 By {getShortAddress(item.contract_address)}
               </p>
               {/* <BsFillPatchCheckFill className="w-4 h-4 mx-4" /> */}
@@ -53,7 +53,7 @@ const VolumeCarousel = () => {
           </div>
         ))}
       </Carousel>
-      <div className="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-[40px]  left-1/2">
+      <div className="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-[60px]  left-1/2">
         {collections?.map((_, index: number) => (
           <div
             className={`lg:w-[70px] w-2 h-0 lg:border-[3px] border-[6px]   ${

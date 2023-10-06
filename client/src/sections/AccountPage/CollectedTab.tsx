@@ -11,20 +11,20 @@ import NFTCardWithoutPrice from "@/components/NFTCard/NFTCardWithoutPrice";
 // import ModalFilter from "./ModalFilter";
 import useModalWallet from "@/components/ModalWallet/useModalWallet";
 import { statusFilterType } from "@/utils/constant";
+import { useParams } from "react-router";
 
 const CollectedTab = () => {
   // menu dropdown in left side
-
+  const { account_address } = useParams();
   const [statusFilter, setStatusFilter] = useState(statusFilterType[0].value);
   const [isOpenEvent, setIsOpenEvent] = useState(false);
   const [isOpenRecentlyListed, setIsOpenEventRecentlyListed] = useState(false);
   const [typeMoney, setTypeMoney] = useState("ETH");
   const [visibleFilter, setVisibleFilter] = useState(false);
-  const { address } = useAccount();
   const { data: collections } = useGetCollections();
   const [NFTs, setNFTs] = useState<any[]>([]);
   const [collectionShow, setCollectionShow] = useState<any[]>([]);
-  const { data: accountNFTs } = useGetAccountNFTs(address || "", 30);
+  const { data: accountNFTs } = useGetAccountNFTs(account_address || "", 30);
   const [tokenID, setTokenID] = useState("");
   const { isShowing, toggle } = useModalWallet();
   const width = window.innerWidth;

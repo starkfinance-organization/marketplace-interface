@@ -16,7 +16,7 @@ const Trending = () => {
       let tempArr = collections.data
         .filter((item: any) => item.volume != null)
         .sort((a: any, b: any) => parseFloat(b.volume) - parseFloat(a.volume))
-        .filter((item: any, index: number) => index < 4);
+        .filter((item: any, index: number) => index < 5);
 
       setCollectionShow(tempArr);
     }
@@ -31,7 +31,7 @@ const Trending = () => {
       /> */}
 
       <img src={TrendingPNG} alt="" className="mx-auto" />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 grid-cols-1 max-w-website justify-between py-[70px] gap-5 px-2 place-items-center">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-5 grid-cols-1 max-w-website justify-between py-[70px] gap-5 px-2 place-items-center">
         {collectionShow?.map((item) => {
           return (
             <div className="md:max-w-[350px] w-full ">
