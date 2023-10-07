@@ -92,6 +92,17 @@ const ModalWallet: React.FC<ModalWalletProps> = ({ isShowing, hide }) => {
 
 							<div className=" items-center justify-center gap-10 px-5 pb-7 pt-7 ">
 								<div
+									className="flex items-center  rounded-md bg-gray-800 p-4 cursor-pointer mb-4"
+									onClick={() => handleConnect(undefined, true)}
+								>
+									<img
+										src={OkxPng}
+										alt="wallet_logo_braavos"
+										className="h-12 cursor-pointer rounded-lg"
+									/>
+									<p className="flex-1 text-center font-medium text-2xl">OKX</p>
+								</div>
+								<div
 									className="flex items-center mb-4 rounded-md bg-gray-800 p-4 cursor-pointer"
 									onClick={() => handleConnect(connectors[1])}
 								>
@@ -105,7 +116,7 @@ const ModalWallet: React.FC<ModalWalletProps> = ({ isShowing, hide }) => {
 									</p>
 								</div>
 								<div
-									className="flex items-center  rounded-md bg-gray-800 p-4 cursor-pointer mb-4"
+									className="flex items-center  rounded-md bg-gray-800 p-4 cursor-pointer"
 									onClick={() => handleConnect(connectors[0])}
 								>
 									<img
@@ -116,18 +127,6 @@ const ModalWallet: React.FC<ModalWalletProps> = ({ isShowing, hide }) => {
 									<p className="flex-1 text-center font-medium text-2xl">
 										Braavos
 									</p>
-								</div>
-
-								<div
-									className="flex items-center  rounded-md bg-gray-800 p-4 cursor-pointer"
-									onClick={() => handleConnect(undefined, true)}
-								>
-									<img
-										src={OkxPng}
-										alt="wallet_logo_braavos"
-										className="h-12 cursor-pointer rounded-lg"
-									/>
-									<p className="flex-1 text-center font-medium text-2xl">OKX</p>
 								</div>
 							</div>
 						</div>
