@@ -21,7 +21,6 @@ const OfferWhenNotLogin = ({
   isListing: boolean;
 }) => {
   const { isShowing, toggle } = useModalWallet();
-  console.log("data", data);
   return (
     <div>
       <ModalMakeOffer isShowing={isShowing} hide={toggle} nftData={data} />
