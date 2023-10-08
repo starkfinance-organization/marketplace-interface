@@ -8,8 +8,10 @@ import useIsMobile from "@/hook/useIsMobile";
 
 const ListForSale = ({
   setIsListForSale,
+  data
 }: {
   setIsListForSale: React.Dispatch<React.SetStateAction<boolean>>;
+  data: any
 }) => {
   const { isMobile } = useIsMobile();
 
@@ -42,7 +44,7 @@ const ListForSale = ({
       <PriceHistoryTable />
       <div className="my-6">
         {/* <ListingTable /> */}
-        <OffersTable />
+        <OffersTable nftData={data} />
       </div>
       <div className="my-6">
         <ItemActivityTable />

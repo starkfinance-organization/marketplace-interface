@@ -153,7 +153,7 @@ const ModalMakeOffer: React.FC<ModalMakeOfferProps> = ({
       uint256.bnToUint256(token_id).low
     );
   };
-  const postRecord = usePutSellListing();
+  const postRecord = usePostOfferRecord();
   useEffect(() => {
     if (balance && hasFetchedBalance) {
       console.log("useEffect", balance);
@@ -264,7 +264,7 @@ const ModalMakeOffer: React.FC<ModalMakeOfferProps> = ({
                 </button>
               </div>
               <div className="w-full">
-                <div className=" flex w-full justify-between items-center">
+                {/* <div className=" flex w-full justify-between items-center">
                   <div className="flex gap-5 items-center">
                     <div className="h-[100px] w-[100px] rounded-md aspect-square border border-[#24C3BC]">
                       <img
@@ -284,9 +284,9 @@ const ModalMakeOffer: React.FC<ModalMakeOfferProps> = ({
                     <p className="text-2xl font-bold">10 ETH</p>
                     <p className="text-xl text-white/50">$123123 </p>
                   </div>
-                </div>
+                </div> */}
                 <div className="flex md:flex-row flex-col my-[30px] md:gap-[30px]">
-                  <div className="flex min-w-[200px] w-1/2 flex-col justify-between flex-1 rounded-md border p-[20px] border-[#24C3BC] bg-[#24C3BC]/10">
+                  {/* <div className="flex min-w-[200px] w-1/2 flex-col justify-between flex-1 rounded-md border p-[20px] border-[#24C3BC] bg-[#24C3BC]/10">
                     <div className="flex justify-between items-center">
                       <p className="text-xl font-bold">Balance</p>
                       <p className="text-xl ">500 ETH</p>
@@ -300,7 +300,7 @@ const ModalMakeOffer: React.FC<ModalMakeOfferProps> = ({
                       <p className="text-xl font-bold">Best offer</p>
                       <p className="text-xl ">500 ETH</p>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="flex-1 md:mt-0 mt-[30px] ">
                     <div className="w-full mb-[30px] h-[60px] flex md:flex-row flex-col items-center  text-center bg-[#24C3BC]/10 border border-[#24C3BC]/80 rounded-xl ">
                       <div className="flex flex-1">

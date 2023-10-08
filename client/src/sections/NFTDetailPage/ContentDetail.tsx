@@ -79,12 +79,13 @@ const ContentDetail = () => {
 											nftData={nftData}
 										/>
 									) : (
-										<ListForSale setIsListForSale={setIsListForSale} />
+										<ListForSale setIsListForSale={setIsListForSale} data={nftData} />
 									)}
 								</div>
+
 							) : (
 								<div>
-									<OfferWhenNotLogin data={nftListing} isListing={isListing} />
+									<OfferWhenNotLogin data={nftData} isListing={isListing} />
 								</div>
 							)}
 						</div>

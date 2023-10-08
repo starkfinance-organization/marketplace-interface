@@ -16,6 +16,9 @@ type OffersTableProps = {
 const OffersTable: React.FC<OffersTableProps> = ({
   nftData,
 }) => {
+  useEffect(() => {
+    console.log("nftData", nftData);
+  }, [nftData]);
   // const { data: collectionData } = useGetCollections();
   const navigate = useNavigate();
   const [openItems, setOpenItems] = useState(false);
@@ -33,6 +36,7 @@ const OffersTable: React.FC<OffersTableProps> = ({
     } else if (error) {
       console.log('Error:', error);
     } else if (offerData && offerData.data) {
+      console.log("offerData", offerData);
       setOffers(offerData.data)
     } else {
       console.log('Data is not yet available.');
