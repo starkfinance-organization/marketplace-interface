@@ -7,7 +7,7 @@ import TwitterIcon from "@/assets/svg/twitter_icon.svg";
 import { route } from "@/routes/config";
 const Footer = () => {
   const contactData = {
-    telegram: "https://t.me/starksportglobal",
+    telegram: "https://t.me/starksportofficial",
     telegramChannel: "https://t.me/starksportchanel",
     twitter: "https://twitter.com/starkfinance?s=21&t=mYOANC7ZpixnNnYAW14NEQ",
     discord: "https://discord.gg/Z2Z8BwHy6k",
