@@ -15,23 +15,25 @@ import Buy from "./Buy";
 
 const OfferWhenNotLogin = ({
   data,
+  nftData,
   isListing,
 }: {
   data: any;
+  nftData: any;
   isListing: boolean;
 }) => {
   const { isShowing, toggle } = useModalWallet();
-  console.log(data);
+
   return (
     <div>
-      <ModalMakeOffer isShowing={isShowing} hide={toggle} data={data} />
+      <ModalMakeOffer isShowing={isShowing} hide={toggle} nftData={data} />
 
       {isListing && (
         <div>
           <NFTCurrentPrice nftData={data?.data[0]} />
 
           <div className="flex items-center justify-between gap-5 mt-[30px]">
-            <Buy nftData={data.data[0]} />
+            <Buy nftData={data?.data[0]} />
             <BtnMakeOffer toggle={toggle} />
           </div>
         </div>
@@ -42,7 +44,7 @@ const OfferWhenNotLogin = ({
       </div>
       <div className="my-6">
         {/* <ListingTable /> */}
-        <OffersTable />
+        <OffersTable nftData={nftData} />
       </div>
 
       <div className="my-6">

@@ -7,34 +7,63 @@ import { BiChevronDown, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import RowNFT from "./RowNFT";
 import RowNFTOffer from "./RowNFTOffer";
+import { useGetAllOffersForNFT } from "@/queries/useGetAllOffersForNFT";
+import { useParams } from "react-router-dom";
 
-const OffersTable = () => {
-  const { data: collectionData } = useGetCollections();
+type OffersTableProps = {
+  nftData: any;
+};
+
+const OffersTable: React.FC<OffersTableProps> = ({ nftData }) => {
+  // const { data: collectionData } = useGetCollections();
   const navigate = useNavigate();
   const [openItems, setOpenItems] = useState(false);
+  const [offers, setOffers] = useState([]);
   const handleOnClick = () => {
     setOpenItems((prevState) => !prevState);
   };
   const [collections, setCollections] = useState<any[]>([]);
 
+  const { contract_address, token_id } = useParams();
+
+  const {
+    data: offerData,
+    error,
+    isLoading,
+  } = useGetAllOffersForNFT(contract_address, token_id);
+
+  console.log(offerData);
+
   useEffect(() => {
-    if (collectionData) {
-      let tempArr = collectionData.data.filter(
-        (item: any) => item.banner_show == 1
-      );
-      setCollections(tempArr);
+    if (isLoading) {
+      console.log("Loading...");
+    } else if (error) {
+      console.log("Error:", error);
+    } else if (offerData && offerData.data) {
+      setOffers(offerData.data);
+    } else {
+      console.log("Data is not yet available.");
     }
-  }, [collectionData]);
+  }, [offerData]);
+
+  // useEffect(() => {
+  //   if (collectionData) {
+  //     let tempArr = collectionData.data.filter(
+  //       (item: any) => item.banner_show == 1
+  //     );
+  //     setCollections(tempArr);
+  //   }
+  // }, [collectionData]);
 
   return (
-    <div className="w-full rounded-[6px] bg-[#24C3BC]/10 border border-[#24C3BC]/80">
+    <div className="w-full rounded-[6px] py-[24px] bg-[#24C3BC]/10 border border-[#24C3BC]/80">
       <button
-        className={` flex w-full px-8 my-[24px] justify-between items-center rounded-md `}
+        className={` flex w-full px-8  justify-between items-center rounded-md `}
         onClick={handleOnClick}
       >
         <div className="flex items-center gap-5">
           <TfiMenuAlt className="w-[24px] h-[24px]" />
-          <p className="font-bold text-[20px]">Offers</p>
+          <p className="font-bold text-[24px]">Offers</p>
         </div>
 
         <BiChevronDown
@@ -49,9 +78,7 @@ const OffersTable = () => {
         }`}
       >
         <div className="flex flex-col flex-1 border-t border-[#24C3BC]/80 ">
-          <p className="text-xl text-center py-5">No offers Yet</p>
-
-          {/* <div className="flex-1 w-full mb-[24px]">
+          <div className="flex-1 w-full">
             <div className="flex-1 relative h-full max-h-[390px] overflow-auto">
               <table className="w-full h-full text-sm text-left  border-gray-500 border-collapse">
                 <thead className=" text-xs sticky top-0 bg-[#24C3BC]">
@@ -62,12 +89,12 @@ const OffersTable = () => {
                     >
                       Price
                     </th>
-                    <th
+                    {/* <th
                       scope="col"
                       className="font-extrabold px-6 py-3 min-w-[100px] text-center text-base"
                     >
                       USD Price
-                    </th>
+                    </th> */}
                     <th
                       scope="col"
                       className="font-extrabold min-w-[100px]  text-center text-base"
@@ -94,13 +121,22 @@ const OffersTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {collections?.map((item: any, index: any) => (
-                    <RowNFTOffer data={item} index={index} key={index} />
-                  ))}
+                  {offers.length == 0 ? (
+                    <p className="text-xl text-center py-5">No offers</p>
+                  ) : (
+                    offers.map((item: any, index: any) => (
+                      <RowNFTOffer
+                        data={item}
+                        index={index}
+                        key={index}
+                        nftData={nftData}
+                      />
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
