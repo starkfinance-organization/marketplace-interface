@@ -55,15 +55,18 @@ const OffersTable: React.FC<OffersTableProps> = ({ nftData }) => {
   //   }
   // }, [collectionData]);
 
+  // <TfiMenuAlt className="w-[24px] h-[24px]" />
+
   return (
-    <div className="w-full rounded-[6px] py-[24px] bg-[#24C3BC]/10 border border-[#24C3BC]/80">
+    <div className="w-full rounded-[6px]  bg-[#24C3BC]/10 border border-[#24C3BC]/80">
       <button
-        className={` flex w-full px-8  justify-between items-center rounded-md `}
+        className={` flex w-full px-8 py-[24px] justify-between items-center rounded-t-md `}
         onClick={handleOnClick}
       >
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 text-white">
           <TfiMenuAlt className="w-[24px] h-[24px]" />
-          <p className="font-bold text-[24px]">Offers</p>
+
+          <p className="font-bold text-[20px]">Item Activity</p>
         </div>
 
         <BiChevronDown
