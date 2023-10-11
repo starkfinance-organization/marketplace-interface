@@ -14,7 +14,7 @@ function useCurrentAccount() {
 			return {
 				account: window.okxwallet.starknet.account,
 				address: window.okxwallet.starknet.selectedAddress,
-				status: "disconnected",
+				status: "connected",
 			};
 		} else if (status === "connected") {
 			return {
