@@ -57,12 +57,12 @@ const RowNFTTabProfile: React.FC<{
 			(wallet === WALLETS.OKX && window.okxwallet.starknet.isConnected)
 		) {
 			const result = await (wallet === WALLETS.OKX &&
-			window.okxwallet.starknet.isConnected
+				window.okxwallet.starknet.isConnected
 				? window.okxwallet.starknet.account.execute({
-						contractAddress: addresses.marketplace.address,
-						entrypoint: "cancelMakerOrder",
-						calldata: [data?.nonce], // To be replace
-				  })
+					contractAddress: addresses.marketplace.address,
+					entrypoint: "cancelMakerOrder",
+					calldata: [data?.nonce], // To be replace
+				})
 				: cancelListing.execute());
 
 			if (result.transaction_hash && address) {
@@ -83,11 +83,11 @@ const RowNFTTabProfile: React.FC<{
 		}
 	};
 
-	const handleCounter = () => {};
+	const handleCounter = () => { };
 
-	const handleAccept = () => {};
+	const handleAccept = () => { };
 
-	const handleCancelOfferMade = () => {};
+	const handleCancelOfferMade = () => { };
 
 	const btn = () => {
 		if (tabName == "Received") {

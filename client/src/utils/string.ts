@@ -111,6 +111,15 @@ export const isStrNullOrEmpty = (str: string | null | undefined): boolean => {
 };
 
 export const isSameAddress = (address0: string, address1: string): boolean => {
+  if (
+    address0 === null ||
+    address1 === null ||
+    address0 === undefined ||
+    address1 === undefined
+  ) {
+    return false;
+  }
+
   // Remove '0x' prefix and leading zeros
   const normalizedAddress0 = address0.replace(/^0x0*/, "0x");
   const normalizedAddress1 = address1.replace(/^0x0*/, "0x");
@@ -156,11 +165,11 @@ export function calculateTimeDifference(targetTime: string): string {
     const days = Math.floor(hours / 24);
 
     if (days > 0) {
-      return `${days} day${days > 1 ? "s" : ""} from now`;
+      return `${days} day${days > 1 ? "s" : ""}`;
     } else if (hours > 0) {
-      return `${hours} hour${hours > 1 ? "s" : ""} from now`;
+      return `${hours} hour${hours > 1 ? "s" : ""}`;
     } else {
-      return `${minutes} minute${minutes > 1 ? "s" : ""} from now`;
+      return `${minutes} minute${minutes > 1 ? "s" : ""}`;
     }
   } else {
     // Target time is the same as the current time
