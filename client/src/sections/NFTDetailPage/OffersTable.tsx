@@ -8,35 +8,41 @@ import { useNavigate } from "react-router";
 import RowNFT from "./RowNFT";
 import RowNFTOffer from "./RowNFTOffer";
 import { useGetAllOffersForNFT } from "@/queries/useGetAllOffersForNFT";
+import { useParams } from "react-router-dom";
 
 type OffersTableProps = {
   nftData: any;
 };
 
-const OffersTable: React.FC<OffersTableProps> = ({
-  nftData,
-}) => {
-
+const OffersTable: React.FC<OffersTableProps> = ({ nftData }) => {
   // const { data: collectionData } = useGetCollections();
   const navigate = useNavigate();
   const [openItems, setOpenItems] = useState(false);
-  const [offers, setOffers] = useState([])
+  const [offers, setOffers] = useState([]);
   const handleOnClick = () => {
     setOpenItems((prevState) => !prevState);
   };
   const [collections, setCollections] = useState<any[]>([]);
 
-  const { data: offerData, error, isLoading } = useGetAllOffersForNFT(nftData?.contract_address, nftData?.token_id);
+  const { contract_address, token_id } = useParams();
+
+  const {
+    data: offerData,
+    error,
+    isLoading,
+  } = useGetAllOffersForNFT(contract_address, token_id);
+
+  console.log(offerData);
 
   useEffect(() => {
     if (isLoading) {
-      console.log('Loading...');
+      console.log("Loading...");
     } else if (error) {
-      console.log('Error:', error);
+      console.log("Error:", error);
     } else if (offerData && offerData.data) {
-      setOffers(offerData.data)
+      setOffers(offerData.data);
     } else {
-      console.log('Data is not yet available.');
+      console.log("Data is not yet available.");
     }
   }, [offerData]);
 
@@ -61,13 +67,15 @@ const OffersTable: React.FC<OffersTableProps> = ({
         </div>
 
         <BiChevronDown
-          className={`w-[36px] h-[36px] transition-all duration-200 ${openItems ? " rotate-180" : " rotate-0;"
-            }`}
+          className={`w-[36px] h-[36px] transition-all duration-200 ${
+            openItems ? " rotate-180" : " rotate-0;"
+          }`}
         />
       </button>
       <div
-        className={`transition-all duration-200 ${openItems ? "overflow-auto h-fit" : "overflow-hidden h-0"
-          }`}
+        className={`transition-all duration-200 ${
+          openItems ? "overflow-auto h-fit" : "overflow-hidden h-0"
+        }`}
       >
         <div className="flex flex-col flex-1 border-t border-[#24C3BC]/80 ">
           <div className="flex-1 w-full">
@@ -113,13 +121,18 @@ const OffersTable: React.FC<OffersTableProps> = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {offers.length == 0 ?
-                    (<p className="text-xl text-center py-5">No offers</p>)
-                    : (
-                      offers.map((item: any, index: any) => (
-                        <RowNFTOffer data={item} index={index} key={index} nftData={nftData} />
-                      ))
-                    )}
+                  {offers.length == 0 ? (
+                    <p className="text-xl text-center py-5">No offers</p>
+                  ) : (
+                    offers.map((item: any, index: any) => (
+                      <RowNFTOffer
+                        data={item}
+                        index={index}
+                        key={index}
+                        nftData={nftData}
+                      />
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

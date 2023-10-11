@@ -46,8 +46,7 @@ export const timestampToDate = (timestamp: number) => {
 };
 
 export const convertWeiToEther = (wei: string) => {
-  if (wei === undefined || wei === null)
-    return 0;
+  if (wei === undefined || wei === null) return 0;
   return Number(ethers.utils.formatEther(wei));
 };
 
@@ -112,6 +111,15 @@ export const isStrNullOrEmpty = (str: string | null | undefined): boolean => {
 };
 
 export const isSameAddress = (address0: string, address1: string): boolean => {
+  if (
+    address0 === null ||
+    address1 === null ||
+    address0 === undefined ||
+    address1 === undefined
+  ) {
+    return false;
+  }
+
   // Remove '0x' prefix and leading zeros
   const normalizedAddress0 = address0.replace(/^0x0*/, "0x");
   const normalizedAddress1 = address1.replace(/^0x0*/, "0x");

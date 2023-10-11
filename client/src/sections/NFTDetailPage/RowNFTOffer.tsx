@@ -15,14 +15,29 @@ import { useNavigate, useParams } from "react-router-dom";
 import { number, uint256 } from "starknet";
 function transformDateFormat(dateStr: string) {
   // Extract the year, month, day, hours, minutes, and seconds
-  const match = dateStr.match(/(\w{3}) (\w{3}) (\d{2}) (\d{4}) (\d{2}):(\d{2}):(\d{2})/);
+  const match = dateStr.match(
+    /(\w{3}) (\w{3}) (\d{2}) (\d{4}) (\d{2}):(\d{2}):(\d{2})/
+  );
 
   if (!match) {
-    throw new Error('Invalid date format');
+    throw new Error("Invalid date format");
   }
 
-  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const month = (monthNames.indexOf(match[2]) + 1).toString().padStart(2, '0');
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = (monthNames.indexOf(match[2]) + 1).toString().padStart(2, "0");
   const day = match[3];
   const year = match[4];
   const time = `${match[5]}:${match[6]}:${match[7]}`;
@@ -37,7 +52,7 @@ const RowNFTOffer: React.FC<{ data: any; index: number; nftData: any }> = ({
 }) => {
   const { contract_address, token_id } = useParams();
   const { address, status, account } = useAccount();
-  const [timeEnd, setTimeEnd] = useState("")
+  const [timeEnd, setTimeEnd] = useState("");
   // console.log("nftData", nftData);
   // console.log("data", data);
   const navigate = useNavigate();
@@ -48,8 +63,7 @@ const RowNFTOffer: React.FC<{ data: any; index: number; nftData: any }> = ({
     let localDate = new Date(time_end);
     const newTimeEnd = transformDateFormat(localDate.toString());
     console.log("newTimeEnd", newTimeEnd);
-    setTimeEnd(newTimeEnd)
-
+    setTimeEnd(newTimeEnd);
   }, [data]);
 
   const handleClick = () => {
@@ -67,9 +81,7 @@ const RowNFTOffer: React.FC<{ data: any; index: number; nftData: any }> = ({
       : ["", ""];
 
     const sell_end_time =
-      timeEnd == null
-        ? "9999999999"
-        : Date.parse(timeEnd) / 1000;
+      timeEnd == null ? "9999999999" : Date.parse(timeEnd) / 1000;
 
     const callData = [
       "1", // takerAsk.isOrderAsk
@@ -146,9 +158,7 @@ const RowNFTOffer: React.FC<{ data: any; index: number; nftData: any }> = ({
   };
 
   return (
-    <tr
-      className="font-semibold text-base bg-transparent border-gray-800 hover:bg-blue-800"
-    >
+    <tr className="font-semibold text-base bg-transparent border-gray-800 hover:bg-blue-800">
       <td className=" text-center text-[16px] font-bold px-2">
         <p>{getShortPrice(data.price) || "-"} ETH</p>
         {/* <p>0.1100 ETH</p> */}
@@ -173,15 +183,18 @@ const RowNFTOffer: React.FC<{ data: any; index: number; nftData: any }> = ({
         >
           Counter
         </button> */}
-        {isSameAddress(nftData.balance.owner_address, address || "") ? (
+        {isSameAddress(nftData?.balance.owner_address, address || "") ? (
           <button
-            onClick={() => { handleAcceptOffer() }}
+            onClick={() => {
+              handleAcceptOffer();
+            }}
             className="font-bold text-xl max-md:text-sm uppercase bg-[#24C3BC] px-[30px] py-2 rounded-[10px]"
           >
             Accept
           </button>
-        ) : (<></>)}
-
+        ) : (
+          <></>
+        )}
       </td>
     </tr>
   );

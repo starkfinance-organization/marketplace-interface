@@ -254,7 +254,7 @@ class NFTController {
     }
   };
 
-  cronTrasaction = async (req, res) => { };
+  cronTrasaction = async (req, res) => {};
 
   saveOffer = async (req, res) => {
     const {
@@ -299,20 +299,33 @@ class NFTController {
       0,
       image_url || "",
       name || "",
-      time_end
+      time_end,
     ];
 
     try {
-      let resultsCheck = await databaseService.queryPromise(checkExistingSQL, [collection_address, token_id, signer]);
+      let resultsCheck = await databaseService.queryPromise(checkExistingSQL, [
+        collection_address,
+        token_id,
+        signer,
+      ]);
 
       if (resultsCheck[0].count > 0) {
-        await databaseService.queryPromise(updateSQL, [price, signature4, nonce, image_url, name, time_end, collection_address, token_id, signer]);
+        await databaseService.queryPromise(updateSQL, [
+          price,
+          signature4,
+          nonce,
+          image_url,
+          name,
+          time_end,
+          collection_address,
+          token_id,
+          signer,
+        ]);
       } else {
         await databaseService.queryPromise(insertSQL, saveOfferValue);
       }
 
       return res.status(200).json({ message: "Offer saved successfully!" });
-
     } catch (e) {
       console.log(e);
       return res.status(400).json({ error: "Insert/Update failed." });
@@ -320,11 +333,7 @@ class NFTController {
   };
 
   acceptOffer = async (req, res) => {
-    const {
-      contract_address,
-      token_id,
-      signer,
-    } = req.body;
+    const { contract_address, token_id, signer } = req.body;
 
     // SQL query to update the status and remove signature4
     const cancelOfferSQL = `
@@ -338,7 +347,7 @@ class NFTController {
       "", // Clearing out signature4
       contract_address,
       token_id,
-      signer
+      signer,
     ];
 
     try {
@@ -349,7 +358,9 @@ class NFTController {
 
       // Check if the offer was updated
       if (resultsCancel.affectedRows > 0) {
-        return res.status(200).json({ message: "Offer accepted successfully!" });
+        return res
+          .status(200)
+          .json({ message: "Offer accepted successfully!" });
       } else {
         return res.status(400).json({ error: "No matching offer found." });
       }
@@ -359,11 +370,7 @@ class NFTController {
   };
 
   cancelOffer = async (req, res) => {
-    const {
-      contract_address,
-      token_id,
-      signer,
-    } = req.body;
+    const { contract_address, token_id, signer } = req.body;
 
     // SQL query to update the status and remove signature4
     const cancelOfferSQL = `
@@ -377,7 +384,7 @@ class NFTController {
       "", // Clearing out signature4
       contract_address,
       token_id,
-      signer
+      signer,
     ];
 
     try {
@@ -388,9 +395,15 @@ class NFTController {
 
       // Check if the offer was updated
       if (resultsCancel.affectedRows > 0) {
-        return res.status(200).json({ message: "Offer cancelled successfully!" });
+        return res
+          .status(200)
+          .json({ message: "Offer cancelled successfully!" });
       } else {
-        return res.status(400).json({ error: "No matching offer found or it's already cancelled." });
+        return res
+          .status(400)
+          .json({
+            error: "No matching offer found or it's already cancelled.",
+          });
       }
     } catch (e) {
       return res.status(400).json({ error: "Failed to cancel the offer." });
@@ -398,10 +411,7 @@ class NFTController {
   };
 
   getAllOffersForNFT = async (req, res) => {
-    const {
-      contract_address,
-      token_id,
-    } = req.query;
+    const { contract_address, token_id } = req.query;
 
     const sql = `
         SELECT * 
@@ -410,18 +420,19 @@ class NFTController {
     `;
 
     try {
-      const data = await databaseService.queryPromise(sql, [contract_address, token_id]);
+      const data = await databaseService.queryPromise(sql, [
+        contract_address,
+        token_id,
+      ]);
       return res.status(200).json({ data });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error: "Error querying offers for NFT" });
     }
-  }
+  };
 
   getAllOffersBySigner = async (req, res) => {
-    const {
-      signer,
-    } = req.query;
+    const { signer } = req.query;
 
     const sql = `
         SELECT * 
@@ -436,7 +447,7 @@ class NFTController {
       console.log(error);
       return res.status(500).json({ error: "Error querying offers by signer" });
     }
-  }
+  };
 }
 
 module.exports = new NFTController();
