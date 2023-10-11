@@ -166,7 +166,7 @@ const RowNFTOffer: React.FC<{ data: any; index: number; nftData: any }> = ({
       {/* <td className="text-center text-[16px] font-bold">
         <p>$170,01</p>
       </td> */}
-      <td className=" text-center text-[16px] font-bold">
+      <td className="py-[11px] text-center text-[16px] font-bold">
         <p>1</p>
       </td>
       <td className="text-center text-[16px] font-bold">

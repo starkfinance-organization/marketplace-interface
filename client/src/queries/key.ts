@@ -27,8 +27,8 @@ export const QUERY_KEY = {
 };
 
 export const SC_URL = "https://api.starkscan.co/api/v0";
-// export const BASE_API_V1 = "https://market-testnet.starksport.finance/api/v0";
-export const BASE_API_V1 = "http://localhost:3000/api/v0";
+export const BASE_API_V1 = "https://market-testnet.starksport.finance/api/v0";
+// export const BASE_API_V1 = "http://localhost:3000/api/v0";
 // export const BASE_API_V1 = "http://localhost:3008/api/v1";
 export const BASE_API_FINANCE =
   "https://market-testnet.starksport.finance/api/v0";

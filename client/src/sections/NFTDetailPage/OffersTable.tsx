@@ -66,7 +66,7 @@ const OffersTable: React.FC<OffersTableProps> = ({ nftData }) => {
         <div className="flex items-center gap-5 text-white">
           <TfiMenuAlt className="w-[24px] h-[24px]" />
 
-          <p className="font-bold text-[20px]">Item Activity</p>
+          <p className="font-bold text-[20px]">Offers</p>
         </div>
 
         <BiChevronDown
@@ -81,7 +81,7 @@ const OffersTable: React.FC<OffersTableProps> = ({ nftData }) => {
         }`}
       >
         <div className="flex flex-col flex-1 border-t border-[#24C3BC]/80 ">
-          <div className="flex-1 w-full">
+          <div className="flex-1 w-full pb-[24px]">
             <div className="flex-1 relative h-full max-h-[390px] overflow-auto">
               <table className="w-full h-full text-sm text-left  border-gray-500 border-collapse">
                 <thead className=" text-xs sticky top-0 bg-[#24C3BC]">
@@ -119,7 +119,7 @@ const OffersTable: React.FC<OffersTableProps> = ({ nftData }) => {
                     </th>
                     <th
                       scope="col"
-                      className="font-extrabold text-center text-base min-w-[200px] "
+                      className="font-extrabold text-center text-base min-w-[120px] "
                     ></th>
                   </tr>
                 </thead>
