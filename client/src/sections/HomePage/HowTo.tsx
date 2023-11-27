@@ -20,7 +20,7 @@ const mockData = [
     icon: <img src={IconHowto3} alt="" />,
     title: "UPLOAD YOUR NFTS",
     descrition:
-      "Upload NFTs in your collection and their properties on Starksport Marketplace",
+      "Upload NFTs in your collection and their properties on Starkfinance Marketplace",
   },
 ];
 
@@ -30,7 +30,7 @@ const HowTo = () => {
       <img src={BG} alt="" className="absolute inset-0 h-full w-full -z-10" />
 
       <p className="text-center text-[48px] font-bold">
-        HOW TO BECOME <br className="lg:hidden" /> A STARKSPORT NFT CREATOR
+        HOW TO BECOME <br className="lg:hidden" /> A STARKFINANCE NFT CREATOR
       </p>
 
       <div className=" flex lg:flex-nowrap flex-wrap justify-center lg:px-[120px] md:px-[60px] px-5 gap-10 mt-20">

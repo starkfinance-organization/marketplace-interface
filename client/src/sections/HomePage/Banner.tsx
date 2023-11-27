@@ -31,7 +31,7 @@ const Banner = () => {
         </p> */}
         <img src={BannerText} className="mt-4 mb-4" />
         <p className="text-[20px] text-white/70  text-center">
-          The best marketplace for Starksport character non-fungible token
+          The best marketplace for Starkfinance character non-fungible token
           collections
         </p>
         <div onClick={() => navigate(route.nftEvent)}>

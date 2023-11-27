@@ -25,7 +25,7 @@ const Footer = () => {
       <div className="flex mx-auto  flex-col lg:flex-row gap-10 items-start h-fit w-full  justify-between lg:px-[120px] md:px-[60px] px-[20px] px-5 ">
         <div className="flex-1 w-fit  lg:min-w-[600px]">
           <p className="uppercase text-[32px] font-paytone text-[#24C3BC]">
-            STARKSPORT NFT marketplace
+            STARKFINANCE NFT marketplace
           </p>
           <p className="text-[20px] mt-5 text-white/75">
             The best marketplace for crypto collectibles and non-fungible tokens
@@ -88,7 +88,7 @@ const Footer = () => {
                 openInNewTab("https://marketplace.starksport.finance/events")
               }
             >
-              Starksport NFT
+              Starkfinance NFT
             </p>
           </div>
           <div className=" w-fit">
@@ -185,7 +185,7 @@ const Footer = () => {
           Contact: business@starksport.finance
         </p>
         <p className="text-white text-[20px]">
-          2023 © Copyright STARKSPORT. All Rights Reserved
+          2023 © Copyright STARKFINANCE. All Rights Reserved
         </p>
       </div>
     </div>

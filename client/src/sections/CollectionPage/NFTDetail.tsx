@@ -74,7 +74,7 @@ const NFTDetail = () => {
 
         <p className="text-[24px] mt-10 font-bold">Description</p>
 
-        <p className="font-bold text-[15px] mt-10">By Starksport</p>
+        <p className="font-bold text-[15px] mt-10">By Starkfinance</p>
         <p className=" text-[12px]">The item is listed at the price you set</p>
 
         <p className="text-[24px] mt-10 font-bold">Traits</p>

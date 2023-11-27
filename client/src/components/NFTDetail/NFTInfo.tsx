@@ -7,11 +7,11 @@ const NFTInfo: React.FC<{ nftData: any; owner: any }> = ({
   owner,
 }) => {
   return (
-    <div >
+    <div>
       <p className="text-[32px] font-extrabold text-[#24C3BC] break-words">
         {nftData?.name} #{nftData?.token_id}
       </p>
-      <p className="text-[20px] my-3 font-bold">Starksport</p>
+      <p className="text-[20px] my-3 font-bold">Starkfinance</p>
       <div className="flex md:gap-[30px] gap-3 md:flex-row flex-col">
         <div className="flex gap-1 ">
           <p className="">Owner by</p>
