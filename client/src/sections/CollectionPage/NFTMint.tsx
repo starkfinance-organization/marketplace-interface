@@ -29,7 +29,7 @@ import useCurrentAccount from "@/hook/useAccount";
 // const provider = new Provider({ sequencer: { network: "mainnet-alpha" } });
 const provider = new RpcProvider({
   nodeUrl:
-    "https://starknet-mainnet.g.alchemy.com/v2/bdiaAMbY1lVsbYjjZ9iedVqdwM14xaKi",
+    "https://starknet-mainnet.g.alchemy.com/v2/ESR5j8ZM501x4emDpJwTPysEN9jFy_B3",
 });
 
 declare const window: any;
