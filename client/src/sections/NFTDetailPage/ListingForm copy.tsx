@@ -7,7 +7,7 @@ import {
 } from "@/utils/string";
 // import usePostSellListing from "@/queries/sell_listing/usePostSellListing";
 // import { NFT } from "@/queries/types";
-import { Contract, number, uint256 } from "starknet";
+import { Contract, number, uint256, RpcProvider } from "starknet";
 import { useEffect, useState } from "react";
 import { useGetSellListingMutation } from "@/queries/useGetSellListingAsync";
 import usePostSellListing from "@/queries/usePostSellListing";
@@ -33,7 +33,11 @@ dayjs.extend(utc); // use plugin
 // import { useGetSellListingMutation } from "@/queries/sell_listing/useGetSellListingAsync";
 // import { useInforListingContext } from "../Context/context";
 
-const provider = new Provider({ sequencer: { network: "mainnet-alpha" } });
+const provider = new RpcProvider({
+	nodeUrl:
+		"https://starknet-mainnet.g.alchemy.com/v2/bdiaAMbY1lVsbYjjZ9iedVqdwM14xaKi",
+});
+
 const transferManagerERC721 = addresses!.transferManagerERC721.address;
 
 type ListingFormProps = {
@@ -258,9 +262,8 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
 		return (
 			<button
 				disabled={isApproving}
-				className={`cursor-pointer h-full py-2 px-4 border w-full  ${
-					isApproving ? "bg-gray-500" : "bg-[#24C3BC]"
-				} rounded-md grid place-items-center mt-3`}
+				className={`cursor-pointer h-full py-2 px-4 border w-full  ${isApproving ? "bg-gray-500" : "bg-[#24C3BC]"
+					} rounded-md grid place-items-center mt-3`}
 				onClick={handleApproveForAll}
 			>
 				<p className="text-[20px] font-bold">
@@ -392,9 +395,8 @@ const ListingForm: React.FC<ListingFormProps> = (props) => {
 								<button
 									disabled={!activeAction}
 									onClick={handleListingSignature}
-									className={`cursor-pointer h-12 w-full py-2 px-4 border ${
-										signing ? "bg-gray-400" : "bg-[#24C3BC]"
-									} rounded-md grid place-items-center mt-3`}
+									className={`cursor-pointer h-12 w-full py-2 px-4 border ${signing ? "bg-gray-400" : "bg-[#24C3BC]"
+										} rounded-md grid place-items-center mt-3`}
 								>
 									{signing ? (
 										<div className="flex items-center justify-center">

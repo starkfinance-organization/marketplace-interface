@@ -4,6 +4,7 @@ import {
 	Provider,
 	number,
 	uint256,
+	RpcProvider
 } from "starknet";
 import { convertEtherToWei } from "@/utils/string";
 import { useInforListingContext } from "./context";
@@ -14,7 +15,10 @@ import { useGlobalContext } from "@/context/GlobalContext";
 import { WALLETS } from "@/context/types";
 import useCurrentAccount from "@/hook/useAccount";
 
-const provider = new Provider({ sequencer: { network: "mainnet-alpha" } });
+const provider = new RpcProvider({
+	nodeUrl:
+		"https://starknet-mainnet.g.alchemy.com/v2/bdiaAMbY1lVsbYjjZ9iedVqdwM14xaKi",
+});
 
 type BuyProps = {
 	nftData: any;
